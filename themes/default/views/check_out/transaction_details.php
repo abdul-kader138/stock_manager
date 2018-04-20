@@ -54,9 +54,9 @@
                             <th class="col-xs-3"><?=lang('date');?></th>
                             <th class="col-xs-2"><?=lang('reference');?></th>
                             <th class="col-xs-3"><?=lang('store');?></th><!-- edit by sajid-->
-                            <th class="col-xs-1"><?=lang('code');?></th>
                             <th class="col-xs-2"><?=lang('name');?></th>
                             <th class="col-xs-1"><?=lang('number');?></th>
+                            <th class="col-xs-1"><?=lang('code');?></th>
                             <th class="col-xs-1"><?=lang('quantity');?></th>
                             <th class="col-xs-1"><?=lang('unit');?></th>
                         </tr>
@@ -72,9 +72,9 @@
                             <th class="col-xs-3"><input class="form-control full-width" id="date_range" placeholder="<?=lang('date');?>" type="text"></th>
                             <th class="col-xs-2"><?=lang('reference');?></th>
                             <th class="col-xs-1"><?=lang('store');?></th>
-                            <th class="col-xs-1"><?=lang('code');?></th>
                             <th class="col-xs-2"><?=lang('name');?></th>
                             <th class="col-xs-2"><?=lang('number');?></th>
+                            <th class="col-xs-1"><?=lang('code');?></th>
                             <th class="col-xs-1"><?=lang('quantity');?></th>
                             <th class="col-xs-1"><?=lang('unit');?></th>
                         </tr>
@@ -136,9 +136,9 @@
                 { "data": "date", "render": hrld },
                 { "data": "reference","searchable": true},
                 { "data": "store_name" <?= $Admin ? '' : ', "visible": false'; ?>},
-                { "data": "item_code","searchable": true },
                 { "data": "item_name","searchable": true },
                 { "data": "number","searchable": true },
+                { "data": "item_code","searchable": true },
                 { "data": "qty","searchable": true },
                 { "data": "um" }
             ],
