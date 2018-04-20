@@ -305,3 +305,4 @@ $lang['plate code']                          = "رمز اللوحة";
 $lang['out_transaction']                      = "تفاصيل تفاصيل السحب";
 $lang['start_date']                           = "بدء التسجيل";
 $lang['end_date']                             = "تاريخ الانتهاء";
+$lang['number']                               = "رقم";

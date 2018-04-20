@@ -56,13 +56,14 @@
                             <th class="col-xs-3"><?=lang('store');?></th><!-- edit by sajid-->
                             <th class="col-xs-1"><?=lang('code');?></th>
                             <th class="col-xs-2"><?=lang('name');?></th>
+                            <th class="col-xs-1"><?=lang('number');?></th>
                             <th class="col-xs-1"><?=lang('quantity');?></th>
                             <th class="col-xs-1"><?=lang('unit');?></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td colspan="8" class="dataTables_empty"><?= lang("loading_data_from_server"); ?></td>
+                            <td colspan="9" class="dataTables_empty"><?= lang("loading_data_from_server"); ?></td>
                         </tr>
                         </tbody>
                         <tfoot>
@@ -73,11 +74,12 @@
                             <th class="col-xs-1"><?=lang('store');?></th>
                             <th class="col-xs-1"><?=lang('code');?></th>
                             <th class="col-xs-2"><?=lang('name');?></th>
+                            <th class="col-xs-2"><?=lang('number');?></th>
                             <th class="col-xs-1"><?=lang('quantity');?></th>
                             <th class="col-xs-1"><?=lang('unit');?></th>
                         </tr>
                         <tr>
-                            <td colspan="8" class="p0"><input type="text" class="form-control b0" name="search_table" id="search_table" placeholder="<?= lang('type_hit_enter'); ?>" style="width:100%;"></td>
+                            <td colspan="9" class="p0"><input type="text" class="form-control b0" name="search_table" id="search_table" placeholder="<?= lang('type_hit_enter'); ?>" style="width:100%;"></td>
                         </tr>
                         </tfoot>
                     </table>
@@ -86,7 +88,7 @@
         </div>
     </div>
 </div>
-                    <?php } ?>
+<?php } ?>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -116,7 +118,7 @@
                     d.end_date=$("#end_date").val();
                 }},
             rowId: 'id',
-            <?php $cols =  $Admin? '0, 1, 2, 3, 4, 5': '0, 1, 2, 4, 5'; ?>
+            <?php $cols =  $Admin? ' 1, 2, 3, 4, 5,6,7,8': ' 1, 2, 4, 5,6,7,8'; ?>
             "buttons": [
                 { extend: 'copyHtml5', exportOptions: { columns: [ <?= $cols ?> ] } },
                 { extend: 'excelHtml5', 'footer': true, exportOptions: { columns: [ <?= $cols ?> ] } },
@@ -136,10 +138,9 @@
                 { "data": "store_name" <?= $Admin ? '' : ', "visible": false'; ?>},
                 { "data": "item_code","searchable": true },
                 { "data": "item_name","searchable": true },
+                { "data": "number","searchable": true },
                 { "data": "qty","searchable": true },
                 { "data": "um" }
-                // { "data": "attachment", "render": download },
-                //{ "data": "Actions", "searchable": false, "orderable": false<?//= $Admin ? '' : ', "visible": false'; ?>// }
             ],
             'fnRowCallback': function (nRow, aData) {
                 nRow.id = aData.id; nRow.className = "check_out_link";
@@ -201,8 +202,5 @@
             $(this).val('');
             table.ajax.url( '<?=site_url('check_out/get_all_transaction');?>' ).load();
         });
-
-
-
     });
 </script>

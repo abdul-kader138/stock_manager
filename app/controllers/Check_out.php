@@ -469,7 +469,7 @@ class Check_out extends MY_Controller {
 
         $this->load->library('datatables');
         $this->datatables
-            ->select($this->db->dbprefix('check_out').".id as id, date, reference, ".$this->db->dbprefix('stores').".store_name, ".$this->db->dbprefix('items').".code as item_code, ".$this->db->dbprefix('items').".name as item_name, sum(".$this->db->dbprefix('check_out_items').".quantity) as qty,  ".$this->db->dbprefix('items').".unit as um", FALSE)
+            ->select($this->db->dbprefix('check_out').".id as id, date, reference, ".$this->db->dbprefix('stores').".store_name, ".$this->db->dbprefix('check_out_items').".plate_code as item_code, ".$this->db->dbprefix('items').".name as item_name,".$this->db->dbprefix('check_out_items').".plate_number as number, ".$this->db->dbprefix('check_out_items').".quantity as qty,  ".$this->db->dbprefix('items').".unit as um", FALSE)
             ->from('check_out')
             ->join('check_out_items', 'check_out_items.check_out_id=check_out.id', 'left')
             ->join('items', 'items.id=check_out_items.item_id', 'left')
