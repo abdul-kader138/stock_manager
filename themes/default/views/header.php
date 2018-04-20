@@ -90,7 +90,9 @@
 								<li><a href="<?= site_url('check_out'); ?>"><i class="fa fa-list"></i>  <?= lang('list_check_outs'); ?></a></li>
 								<li><a href="<?= site_url('check_out/add'); ?>"><i class="fa fa-plus"></i> <?= lang('new_check_out'); ?></a></li>
 								<li><a href="<?= site_url('check_out/add_by_csv'); ?>"><i class="fa fa-plus"></i> <?= lang('check_out_by_csv'); ?></a></li>
-							</ul>
+                                <li><a href="<?= site_url('check_out/transaction_details'); ?>"><i class="fa fa-list"></i>  <?= lang('out_transaction'); ?></a></li>
+
+                            </ul>
 						</li>
 						<?php if($Admin) { ?>
 						<li class="dropdown">

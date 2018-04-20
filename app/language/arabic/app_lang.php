@@ -301,6 +301,7 @@ $lang['choose_file']                          = "اختيارالملف";
 $lang['plate number']                          = "رقم اللوحة";
 $lang['plate code']                          = "رمز اللوحة";
 
-
-
-
+//abdul kader(codelover138)
+$lang['out_transaction']                      = "تفاصيل تفاصيل السحب";
+$lang['start_date']                           = "بدء التسجيل";
+$lang['end_date']                             = "تاريخ الانتهاء";

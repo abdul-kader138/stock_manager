@@ -289,3 +289,9 @@ $lang['last_5_check_ins']                     = "Last 5 check-ins";
 $lang['last_5_check_outs']                    = "Last 5 check-outs";
 $lang['no_record_found']                      = "No record found for the item in/out";
 $lang['stock_alert']                          = "Stock Alerts";
+
+//abdul kader(codelover138)
+$lang['out_transaction']                      = "Check-Out Item Details";
+$lang['start_date']                           = "Start Date";
+$lang['end_date']                             = "End Date";
+

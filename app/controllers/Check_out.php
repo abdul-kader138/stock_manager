@@ -445,4 +445,45 @@ class Check_out extends MY_Controller {
         }
     }
 
+    public function transaction_details() {
+        $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
+        $this->data['page_title'] = lang('out_transaction');
+        $this->page_construct('check_out/transaction_details', $this->data);
+    }
+
+
+    public function get_all_transaction($alerts = NULL) {
+        if ($_POST["end_date"]) {
+            $end_date = $_POST["end_date"];
+            $end_date=$end_date ." 23:59:59";
+
+        } else {
+            $end_date1 = NULL;
+        }
+        if ($_POST["start_date"]) {
+            $start_date = $_POST["start_date"];
+            $start_date=$start_date ." 00:00:00";
+        } else {
+            $start_date = NULL;
+        }
+
+        $this->load->library('datatables');
+        $this->datatables
+            ->select($this->db->dbprefix('check_out').".id as id, date, reference, ".$this->db->dbprefix('stores').".store_name, ".$this->db->dbprefix('items').".code as item_code, ".$this->db->dbprefix('items').".name as item_name, sum(".$this->db->dbprefix('check_out_items').".quantity) as qty,  ".$this->db->dbprefix('items').".unit as um", FALSE)
+            ->from('check_out')
+            ->join('check_out_items', 'check_out_items.check_out_id=check_out.id', 'left')
+            ->join('items', 'items.id=check_out_items.item_id', 'left')
+            ->join('users', 'users.id=check_out.created_by', 'left')
+            ->join('stores', 'stores.id=check_out.store_id', 'left')
+            ->group_by('check_out.id,check_out_items.item_id');
+        //$this->datatables->unset_column("id");
+        if($start_date) { $this->datatables->where('date >=', $start_date); }
+        if($end_date) { $this->datatables->where('date <=', $end_date); }
+
+        if(!$this->Admin){
+            $this->datatables->where('check_out.store_id ', $this->store_id);
+        }
+
+        echo $this->datatables->generate();
+    }
 }
