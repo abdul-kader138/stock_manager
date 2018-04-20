@@ -1,0 +1,1246 @@
+#
+# TABLE STRUCTURE FOR: tec_categories
+#
+
+DROP TABLE IF EXISTS `tec_categories`;
+
+CREATE TABLE `tec_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(20) NOT NULL,
+  `name` varchar(55) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_categories` (`id`, `code`, `name`) VALUES ('1', '01', 'Yellow');
+INSERT INTO `tec_categories` (`id`, `code`, `name`) VALUES ('2', '02', 'Red');
+INSERT INTO `tec_categories` (`id`, `code`, `name`) VALUES ('3', '03', 'Government ');
+INSERT INTO `tec_categories` (`id`, `code`, `name`) VALUES ('4', '04', 'Export');
+INSERT INTO `tec_categories` (`id`, `code`, `name`) VALUES ('5', '05', 'Green');
+INSERT INTO `tec_categories` (`id`, `code`, `name`) VALUES ('6', '06', 'Motorcycle ');
+
+
+#
+# TABLE STRUCTURE FOR: tec_check_in
+#
+
+DROP TABLE IF EXISTS `tec_check_in`;
+
+CREATE TABLE `tec_check_in` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `reference` varchar(55) NOT NULL,
+  `date` datetime NOT NULL,
+  `attachment` varchar(55) DEFAULT NULL,
+  `supplier` int(11) DEFAULT NULL,
+  `store_id` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `note` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_check_in` (`id`, `reference`, `date`, `attachment`, `supplier`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('17', '711632850879', '2018-03-18 06:17:00', NULL, NULL, '11', '7', NULL, NULL, 'تم الاستلام دون ايصال');
+INSERT INTO `tec_check_in` (`id`, `reference`, `date`, `attachment`, `supplier`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('18', '708539632270', '2018-03-27 11:20:00', NULL, NULL, '11', '7', NULL, NULL, '');
+
+
+#
+# TABLE STRUCTURE FOR: tec_check_in_items
+#
+
+DROP TABLE IF EXISTS `tec_check_in_items`;
+
+CREATE TABLE `tec_check_in_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `check_in_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `stock_in_no` (`check_in_id`,`item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('1', '1', '3', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('6', '3', '9', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('7', '3', '10', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('8', '4', '12', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('9', '5', '12', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('10', '6', '12', '2');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('11', '7', '13', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('12', '8', '13', '20');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('13', '9', '15', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('14', '10', '15', '5');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('15', '11', '17', '2');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('16', '12', '17', '200');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('17', '13', '18', '100');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('18', '14', '18', '100');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('19', '15', '28', '1000');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('20', '16', '30', '800');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('21', '17', '28', '70');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('22', '17', '29', '30');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('23', '17', '30', '100');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('24', '17', '31', '100');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('25', '17', '32', '50');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('26', '18', '29', '10000');
+
+
+#
+# TABLE STRUCTURE FOR: tec_check_out
+#
+
+DROP TABLE IF EXISTS `tec_check_out`;
+
+CREATE TABLE `tec_check_out` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `reference` varchar(55) NOT NULL,
+  `date` datetime NOT NULL,
+  `attachment` varchar(55) DEFAULT NULL,
+  `customer` int(11) DEFAULT NULL,
+  `store_id` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `note` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('38', '827823745403', '2018-03-18 06:20:00', NULL, NULL, '11', '7', NULL, NULL, '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('39', '274125650039', '2018-03-18 06:24:00', NULL, NULL, '11', '7', '7', '2018-04-10 08:31:10', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('40', '976204258604', '2018-03-21 04:36:00', NULL, NULL, '11', '7', '7', '2018-03-21 04:54:56', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('41', '942152970861', '2018-03-21 04:50:00', NULL, NULL, '11', '7', '7', '2018-04-10 09:45:22', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('42', '176970436985', '2018-03-25 08:15:00', NULL, NULL, '11', '7', '7', '2018-04-10 09:45:01', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('43', '074182968793', '2018-03-27 10:46:00', NULL, NULL, '11', '7', '7', '2018-04-10 06:44:01', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('44', '509257340861', '2018-03-28 04:13:00', NULL, NULL, '11', '7', '7', '2018-04-10 09:44:37', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('45', '607655341021', '2018-04-10 04:08:00', NULL, NULL, '11', '7', '7', '2018-04-10 09:59:10', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('46', '273048919364', '2018-04-10 04:57:00', NULL, NULL, '11', '7', '7', '2018-04-10 09:45:43', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('47', '281156439072', '2018-04-10 05:47:00', NULL, NULL, '11', '7', '7', '2018-04-10 09:43:38', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('48', '020136578824', '2018-04-10 08:13:00', NULL, NULL, '11', '7', '7', '2018-04-10 09:43:15', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('49', '319563402572', '2018-04-10 08:24:00', NULL, NULL, '11', '7', '7', '2018-04-10 09:55:43', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('50', '580744353261   M', '2018-04-11 04:29:00', NULL, NULL, '11', '7', '7', '2018-04-11 05:52:23', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('51', '314186527094 B', '2018-04-11 05:04:00', NULL, NULL, '11', '7', '7', '2018-04-11 05:51:39', '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('52', '687642301087    SMAII', '2018-04-11 05:53:00', NULL, NULL, '11', '7', '7', '2018-04-11 05:59:24', '');
+
+
+#
+# TABLE STRUCTURE FOR: tec_check_out_items
+#
+
+DROP TABLE IF EXISTS `tec_check_out_items`;
+
+CREATE TABLE `tec_check_out_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `check_out_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `plate_code` varchar(250) NOT NULL,
+  `plate_number` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `stock_out_no` (`check_out_id`,`item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3474 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1', '1', '9', '3', '', '');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2', '1', '9', '3', '', '');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3', '2', '9', '2', '', '');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('4', '2', '9', '1', '', '');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('5', '3', '9', '1', '', '');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('6', '8', '9', '1', '455', '554');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('7', '9', '9', '1', 'ddd', '55');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('13', '10', '9', '1', '123', 'new');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('14', '10', '9', '1', 'ss', 'ds');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('15', '11', '13', '1', '12', '10');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('16', '12', '13', '2', '78', '12');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('17', '13', '13', '3', '10', '5');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('18', '13', '13', '3', '10', '5');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('19', '14', '13', '8', '12', '10');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('20', '15', '14', '1', '10', '5');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('21', '16', '15', '2', '16', '15');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('22', '16', '15', '2', '16', '15');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('37', '17', '17', '1', '3332', 'eee');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('38', '17', '17', '2', '3322', 'ddd');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('39', '18', '17', '2', 'ee', '222');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('40', '18', '17', '2', 'sw', '4433');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('41', '19', '17', '2', '22', '2222');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('42', '20', '17', '2', '333', 'ddd');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('43', '21', '17', '2', 'ff', '44555');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('44', '21', '17', '2', 'ww', '3333');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('45', '22', '17', '2', 'ab', '23445');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('49', '23', '17', '2', 'dd', '3333');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('50', '23', '17', '2', 'ac', '2211');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('51', '23', '17', '2', '22', 'sss');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('52', '23', '17', '2', '22', 'sdd');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('53', '23', '17', '2', '22', 'ccd');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('54', '23', '17', '2', '22', 'ddd');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('55', '23', '17', '2', '22', 'sss');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('56', '23', '17', '2', '22', 'ed');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('57', '23', '17', '2', '32', 'dd');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('58', '24', '23', '1', 'ab', '22333');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('59', '25', '18', '2', 'ab', '2233');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('60', '25', '19', '2', 'ac', '3455');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('61', '25', '18', '2', 'ss', '2233');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('62', '25', '20', '2', 'wa', '1237');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('63', '25', '21', '2', 'ax', '1233');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('64', '25', '22', '2', 'ax', '7788');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('65', '26', '19', '2', 'ab', '33222');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('66', '26', '21', '2', 'sc', '33');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('67', '27', '19', '2', 'ab', '6656');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('68', '27', '21', '2', 'gh', '442');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('70', '28', '19', '2', 'hh', '6666');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('71', '29', '18', '2', 'sc', '2233');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('72', '30', '18', '2', 'ab', '7788');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('73', '30', '21', '2', 'tr', '66778');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('74', '31', '28', '2', 'AM', '4422');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('75', '31', '28', '1', 'A', '421');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('76', '32', '30', '1', 'bb', '12345');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('83', '33', '28', '2', 'ed', '333222');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('84', '33', '18', '2', 'eed', '11');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('86', '34', '28', '2', 'sx', '222');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('87', '34', '29', '2', 'cc', '11');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('88', '35', '18', '2', 'ss', '33');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('90', '36', '29', '2', 'ww', '232');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('97', '37', '28', '2', 'ww', '11');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('98', '37', '30', '2', 'ww', '11');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('99', '37', '31', '2', 's', '20');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('100', '37', '22', '2', 'dd', '33');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('101', '38', '28', '50', 'qurum', '100');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('118', '40', '30', '2', 'AD', '7102');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('119', '40', '30', '2', 'S', '35920');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('120', '40', '30', '2', 'D', '27448');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('121', '40', '30', '2', 'M', '9714');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('122', '40', '30', '2', 'AM', '1664');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('123', '40', '30', '1', 'YM', '9804');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('124', '40', '30', '2', 'DW', '3121');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('125', '40', '30', '2', 'A', '50511');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('126', '40', '30', '1', 'SB', '6705');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1374', '43', '29', '2', 'A', '80997');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1375', '43', '29', '2', 'H', '60733');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1376', '43', '29', '2', 'A', '81399');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1377', '43', '29', '2', 'D', '81014');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1378', '43', '29', '2', 'WW', '9229');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1379', '43', '29', '2', 'BW', '3093');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1380', '43', '29', '2', 'B', '86488');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1381', '43', '29', '2', 'R', '91675');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1382', '43', '29', '2', 'D', '83609');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1383', '43', '29', '2', 'D', '82052');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1384', '43', '29', '2', 'D', '83462');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1385', '43', '29', '2', 'R', '91941');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1386', '43', '29', '2', 'R', '68888');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1387', '43', '29', '2', 'B', '90343');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1388', '43', '29', '2', 'B', '84254');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1389', '43', '29', '2', 'D', '79681');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1390', '43', '29', '2', 'R', '89156');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1391', '43', '29', '2', 'Y', '14294');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1392', '43', '29', '2', 'Y', '19389');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1393', '43', '29', '2', 'Y', '51229');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1394', '43', '29', '2', 'D', '86212');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1395', '43', '29', '2', 'A', '81494');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1396', '43', '29', '2', 'S', '64260');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1397', '43', '29', '2', 'H', '51353');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1398', '43', '29', '2', 'H', '62367');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1399', '43', '29', '2', 'Y', '27435');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1400', '43', '29', '2', 'M', '10569');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1401', '43', '29', '2', 'M', '68975');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1402', '43', '29', '2', 'MM', '4988');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1403', '43', '29', '2', 'Y', '82077');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1404', '43', '29', '2', 'B', '87704');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1405', '43', '29', '2', 'W', '54648');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1406', '43', '29', '2', 'W', '28478');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1407', '43', '29', '2', 'S', '67606');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1408', '43', '29', '2', 'M', '30903');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1409', '43', '29', '2', 'AD', '1320');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1410', '43', '29', '2', 'D', '4727');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1411', '43', '29', '2', 'B', '91041');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1412', '43', '29', '2', 'Y', '9999');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1413', '43', '29', '2', 'S', '67820');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1414', '43', '29', '2', 'R', '93217');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1415', '43', '29', '2', 'RW', '3331');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1416', '43', '29', '2', 'W', '38174');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1417', '43', '29', '2', 'B', '93774');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1418', '43', '29', '2', 'AW', '984');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1419', '43', '29', '2', 'A', '85821');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2064', '39', '28', '2', 'hh', '5415');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2065', '39', '31', '2', 'yh', '7778');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2066', '39', '29', '2', 'd', '4745');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2067', '39', '29', '2', 'y', '558');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2269', '48', '32', '2', 'MS', '1974');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2270', '48', '32', '2', 'HA', '535');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2271', '48', '32', '2', 'DK', '4893');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2272', '48', '32', '2', 'AK', '7771');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2273', '48', '32', '2', 'DK', '8201');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2274', '48', '32', '2', 'WA', '2576');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2275', '48', '32', '2', 'YD', '4865');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2276', '48', '32', '2', 'WB', '8360');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2277', '48', '32', '2', 'RK', '1459');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2278', '48', '32', '2', 'YR', '6381');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2279', '48', '32', '2', 'HA', '4716');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2280', '48', '32', '2', 'MD', '6544');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2281', '48', '32', '2', 'DS', '5953');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2282', '47', '29', '2', 'M', '88140');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2283', '47', '29', '2', 'M', '37921');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2284', '47', '29', '2', 'W', '14448');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2285', '47', '29', '2', 'M', '80231');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2286', '47', '29', '2', 'M', '15037');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2287', '47', '29', '2', 'Y', '71440');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2288', '47', '29', '2', 'Y', '34589');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2289', '47', '29', '2', 'B', '94477');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2290', '47', '29', '2', 'W', '16639');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2291', '47', '29', '2', 'SS', '5953');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2292', '47', '29', '2', 'DR', '327');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2293', '47', '29', '2', 'M', '89924');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2294', '47', '29', '2', 'AM', '7366');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2295', '47', '29', '2', 'W', '16644');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2296', '47', '29', '2', 'W', '16643');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2297', '47', '29', '2', 'M', '34258');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2298', '47', '29', '2', 'B', '88737');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2299', '47', '29', '2', 'M', '23087');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2300', '47', '29', '2', 'M', '39160');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2301', '47', '29', '2', 'Y', '26012');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2302', '47', '29', '2', 'Y', '40150');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2303', '47', '29', '2', 'M', '53444');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2304', '47', '29', '2', 'M', '25104');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2305', '47', '29', '2', 'Y', '63011');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2306', '47', '29', '2', 'AB', '5113');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2307', '47', '29', '2', 'Y', '22278');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2308', '47', '29', '2', 'M', '15039');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2309', '47', '29', '2', 'Y', '69721');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2310', '47', '29', '2', 'AD', '1179');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2311', '47', '29', '2', 'Y', '18672');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2312', '47', '29', '2', 'M', '38147');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2313', '47', '29', '2', 'M', '66932');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2314', '47', '29', '2', 'M', '50882');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2315', '47', '29', '2', 'M', '72990');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2316', '47', '29', '2', 'W', '86980');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2317', '47', '29', '2', 'M', '40072');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2318', '47', '29', '2', 'Y', '56692');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2319', '47', '29', '2', 'M', '29925');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2320', '47', '29', '2', 'RM', '2363');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2321', '47', '29', '2', 'W', '88783');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2322', '47', '29', '2', 'Y', '81975');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2323', '47', '29', '2', 'M', '45924');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2324', '47', '29', '2', 'W', '16675');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2325', '47', '29', '2', 'M', '59339');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2326', '47', '29', '2', 'M', '20258');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2327', '47', '29', '2', 'M', '24719');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2328', '47', '29', '2', 'M', '98565');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2329', '47', '29', '2', 'M', '15103');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2330', '47', '29', '2', 'W', '31579');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2331', '47', '29', '2', 'Y', '98827');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2332', '47', '29', '2', 'R', '94111');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2333', '47', '29', '2', 'M', '70271');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2334', '47', '29', '2', 'W', '71518');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2335', '47', '29', '2', 'H', '93661');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2336', '47', '29', '2', 'W', '16681');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2337', '47', '29', '2', 'B', '18281');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2338', '47', '29', '2', 'BW', '979');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2339', '47', '29', '2', 'M', '14214');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2340', '47', '29', '2', 'W', '87325');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2341', '47', '29', '2', 'D', '95591');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2342', '47', '29', '2', 'W', '464517');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2343', '47', '29', '2', 'SS', '9517');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2344', '47', '29', '2', 'W', '95696');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2345', '47', '29', '2', 'YY', '9413');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2346', '47', '29', '2', 'M', '72381');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2347', '47', '29', '2', 'Y', '17111');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2469', '44', '28', '2', 'M', '60210');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2470', '44', '28', '2', 'M', '90006');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2471', '44', '28', '2', 'B', '23753');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2472', '44', '28', '2', 'B', '23924');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2473', '44', '28', '2', 'H', '12560');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2474', '44', '28', '2', 'D', '19408');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2475', '44', '28', '2', 'D', '18048');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2476', '44', '28', '2', 'A', '13529');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2477', '44', '28', '2', 'A', '33368');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2478', '44', '28', '2', 'W', '5365');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2479', '44', '28', '2', 'MY', '7587');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2480', '44', '28', '2', 'H', '15596');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2481', '44', '28', '2', 'W', '37882');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2482', '44', '28', '2', 'BY', '6522');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2483', '44', '28', '2', 'M', '52797');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2484', '44', '28', '2', 'H', '25487');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2485', '44', '28', '2', 'A', '94349');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2486', '44', '28', '2', 'AS', '295');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2487', '44', '28', '2', 'AR', '3503');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2488', '44', '28', '2', 'A', '24260');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2489', '44', '28', '2', 'A', '24820');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2490', '44', '28', '2', 'M', '70035');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2491', '44', '28', '2', 'R', '38200');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2492', '44', '28', '2', 'MM', '7587');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2493', '44', '28', '2', 'A', '872');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2494', '44', '28', '2', 'H', '23926');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2495', '44', '28', '2', 'H', '23697');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2496', '44', '28', '2', 'A', '38653');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2497', '44', '28', '2', 'R', '48071');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2498', '44', '28', '2', 'D', '43532');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2499', '44', '28', '2', 'Y', '11983');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2500', '44', '28', '2', 'HD', '8550');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2501', '44', '28', '2', 'M', '20925');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2502', '44', '28', '2', 'W', '25301');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2503', '44', '28', '2', 'A', '34274');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2504', '44', '28', '2', 'W', '71810');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2505', '44', '28', '2', 'S', '15390');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2506', '44', '28', '2', 'H', '25884');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2507', '44', '28', '2', 'DY', '3990');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2508', '44', '28', '2', 'W', '42565');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2509', '44', '28', '2', 'M', '18880');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2510', '44', '28', '2', 'H', '40495');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2511', '44', '28', '2', 'B', '60564');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2512', '44', '28', '2', 'H', '41463');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2513', '44', '28', '2', 'M', '82849');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2514', '44', '28', '2', 'D', '5768');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2515', '44', '28', '2', 'A', '47306');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2516', '44', '28', '2', 'B', '51362');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2517', '44', '28', '2', 'S', '35340');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2518', '44', '28', '2', 'DY', '6619');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2519', '44', '28', '2', 'H', '22644');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2520', '44', '28', '2', 'HR', '5888');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2521', '44', '28', '2', 'A', '3124');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2522', '44', '28', '2', 'B', '45016');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2523', '44', '28', '2', 'R', '57298');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2524', '44', '28', '2', 'H', '40032');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2525', '44', '28', '2', 'S', '1795');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2526', '44', '28', '2', 'S', '45831');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2527', '44', '28', '2', 'H', '86968');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2528', '44', '28', '2', 'M', '46018');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2529', '44', '28', '2', 'B', '61671');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2530', '44', '28', '2', 'W', '55109');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2531', '44', '28', '2', 'H', '46316');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2532', '44', '28', '2', 'B', '86097');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2533', '44', '28', '2', 'H', '94243');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2534', '44', '28', '2', 'HD', '253');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2535', '44', '28', '2', 'S', '79729');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2536', '44', '28', '2', 'W', '71033');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2537', '44', '28', '2', 'H', '47541');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2538', '44', '28', '2', 'H', '47570');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2539', '44', '28', '2', 'R', '74895');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2540', '44', '28', '2', 'S', '55180');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2541', '44', '28', '2', 'B', '72931');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2542', '44', '28', '2', 'S', '12963');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2543', '44', '28', '2', 'Y', '24071');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2544', '44', '28', '2', 'A', '88511');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2545', '44', '28', '2', 'W', '18184');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2546', '44', '28', '2', 'M', '49590');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2547', '44', '28', '2', 'W', '57103');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2548', '44', '28', '2', 'WW', '3466');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2549', '44', '28', '2', 'W', '95881');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2550', '44', '28', '2', 'H', '48672');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2551', '44', '28', '2', 'RY', '4221');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2552', '44', '28', '2', 'Y', '88637');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2553', '44', '28', '2', 'BD', '4469');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2554', '44', '28', '2', 'D', '65302');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2555', '44', '28', '2', 'R', '81424');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2556', '44', '28', '2', 'R', '84342');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2557', '44', '28', '2', 'W', '32374');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2558', '44', '28', '2', 'R', '84673');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2559', '44', '28', '2', 'B', '44737');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2560', '44', '28', '2', 'B', '82023');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2561', '44', '28', '2', 'H', '57148');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2562', '44', '28', '2', 'BS', '574');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2563', '44', '28', '2', 'DY', '806');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2564', '44', '28', '2', 'S', '62213');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2565', '44', '28', '2', 'H', '58768');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2566', '44', '28', '2', 'H', '59037');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2567', '44', '28', '2', 'M', '79197');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2568', '44', '28', '2', 'M', '62641');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2569', '44', '28', '2', 'Y', '91990');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2570', '44', '28', '2', 'H', '3394');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2571', '44', '28', '2', 'D', '81342');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2572', '44', '28', '2', 'M', '10495');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2573', '44', '28', '2', 'B', '87790');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2574', '44', '28', '2', 'YH', '7971');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2575', '44', '28', '2', 'B', '93146');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2576', '44', '28', '2', 'S', '68835');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2577', '44', '28', '2', 'H', '62376');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2578', '44', '28', '2', 'Y', '14636');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2579', '44', '28', '2', 'RM', '4250');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2580', '44', '28', '2', 'M', '59068');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2581', '44', '28', '2', 'A', '89094');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2582', '44', '28', '2', 'AW', '8665');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2583', '44', '28', '2', 'MM', '837');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2584', '44', '28', '2', 'H', '63896');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2585', '44', '28', '2', 'A', '96');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2586', '44', '28', '2', 'W', '59454');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2587', '44', '28', '2', 'M', '83734');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2588', '44', '28', '2', 'D', '88151');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2589', '42', '30', '2', 'A', '123');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2590', '41', '30', '2', 'DW', '3121');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2591', '46', '28', '2', 'M', '92617');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2592', '46', '28', '2', 'RR', '8683');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2593', '46', '28', '2', 'Y', '88295');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2594', '46', '28', '2', 'YA', '9197');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2595', '46', '28', '2', 'W', '34916');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2596', '46', '28', '2', 'Y', '56953');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2597', '46', '28', '2', 'A', '23000');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2598', '46', '28', '2', 'M', '50831');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2599', '46', '28', '2', 'Y', '96784');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2600', '46', '28', '2', 'M', '51745');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2601', '46', '28', '2', 'Y', '16805');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2602', '46', '28', '2', 'M', '25436');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2603', '46', '28', '2', 'M', '89149');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2604', '46', '28', '2', 'HD', '8336');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2605', '46', '28', '2', 'W', '51002');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2606', '46', '28', '2', 'HR', '6010');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2607', '46', '28', '2', 'M', '16802');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2608', '46', '28', '2', 'W', '86279');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2609', '46', '28', '2', 'Y', '95945');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2610', '46', '28', '2', 'Y', '46385');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2611', '46', '28', '2', 'M', '28151');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2612', '46', '28', '2', 'M', '27170');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2613', '46', '28', '2', 'M', '27724');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2614', '46', '28', '2', 'M', '14550');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2615', '46', '28', '2', 'Y', '1691');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2616', '46', '28', '2', 'Y', '41417');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2617', '46', '28', '2', 'Y', '16825');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2618', '46', '28', '2', 'Y', '78631');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2619', '46', '28', '2', 'W', '9665');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2620', '46', '28', '2', 'M', '32047');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2621', '46', '28', '2', 'W', '16345');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2622', '46', '28', '2', 'M', '77255');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2623', '46', '28', '2', 'M', '65467');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2624', '46', '28', '2', 'M', '47350');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2625', '46', '28', '2', 'D', '6704');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2626', '46', '28', '2', 'R', '99860');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2627', '46', '28', '2', 'BS', '9508');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2628', '46', '28', '2', 'Y', '51389');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2629', '46', '28', '2', 'Y', '16903');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2630', '46', '28', '2', 'DR', '8006');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2631', '46', '28', '2', 'HY', '5635');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2632', '46', '28', '2', 'W', '22614');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2633', '46', '28', '2', 'AD', '7895');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2634', '46', '28', '2', 'W', '16414');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2635', '46', '28', '2', 'W', '88930');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2636', '46', '28', '2', 'W', '47559');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2637', '46', '28', '2', 'W', '62577');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2638', '46', '28', '2', 'M', '85717');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2639', '46', '28', '2', 'W', '38798');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2640', '46', '28', '2', 'W', '33524');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2641', '46', '28', '2', 'M', '14649');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2642', '46', '28', '2', 'M', '57360');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2643', '46', '28', '2', 'M', '24277');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2644', '46', '28', '2', 'M', '71591');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2645', '46', '28', '2', 'Y', '60680');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2646', '46', '28', '2', 'W', '29973');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2647', '46', '28', '2', 'W', '71850');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2648', '46', '28', '2', 'M', '65122');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2649', '46', '28', '2', 'M', '41058');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2650', '46', '28', '2', 'W', '58107');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2651', '46', '28', '2', 'Y', '16946');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2652', '46', '28', '2', 'M', '88645');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2653', '46', '28', '2', 'W', '19063');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2654', '46', '28', '2', 'MW', '1770');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2655', '46', '28', '2', 'R', '11007');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2656', '46', '28', '2', 'W', '84106');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2657', '46', '28', '2', 'W', '16476');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2658', '46', '28', '2', 'HS', '4941');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2659', '46', '28', '2', 'M', '55440');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2660', '46', '28', '2', 'A', '64040');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2661', '46', '28', '2', 'M', '73524');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2662', '46', '28', '2', 'Y', '24776');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2663', '46', '28', '2', 'M', '69457');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2664', '46', '28', '2', 'M', '34257');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2665', '46', '28', '2', 'M', '14751');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2666', '46', '28', '2', 'Y', '33326');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2667', '46', '28', '2', 'BW', '6757');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2668', '46', '28', '2', 'M', '52016');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2669', '46', '28', '2', 'MW', '416');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2670', '46', '28', '2', 'Y', '61757');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2671', '46', '28', '2', 'M', '14828');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2672', '46', '28', '2', 'M', '53756');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2673', '46', '28', '2', 'Y', '60150');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2674', '46', '28', '2', 'W', '45591');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2675', '46', '28', '2', 'S', '835');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2676', '46', '28', '2', 'Y', '40458');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2677', '46', '28', '2', 'W', '81732');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2678', '46', '28', '2', 'BD', '8908');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2679', '46', '28', '2', 'M', '28084');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2680', '46', '28', '2', 'Y', '32669');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2681', '46', '28', '2', 'BR', '4817');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2682', '46', '28', '2', 'M', '46357');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2683', '46', '28', '2', 'Y', '17041');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2684', '46', '28', '2', 'B', '51156');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2685', '46', '28', '2', 'W', '33425');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2686', '46', '28', '2', 'M', '369175');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2687', '46', '28', '2', 'M', '14888');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2688', '46', '28', '2', 'M', '90550');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2689', '46', '28', '2', 'AA', '1343');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2690', '46', '28', '2', 'M', '83383');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2691', '46', '28', '2', 'S', '13318');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2692', '46', '28', '2', 'H', '33666');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2693', '46', '28', '2', 'M', '42997');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2694', '46', '28', '2', 'W', '77746');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2695', '46', '28', '2', 'BR', '2122');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2696', '46', '28', '2', 'A', '1600');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2697', '46', '28', '2', 'M', '26051');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2698', '46', '28', '2', 'W', '47882');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2699', '46', '28', '2', 'M', '83489');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2700', '46', '28', '2', 'M', '89866');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2701', '46', '28', '2', 'DW', '2946');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2702', '46', '28', '2', 'Y', '89489');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2703', '46', '28', '2', 'M', '78352');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2704', '46', '28', '2', 'W', '88024');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2705', '46', '28', '2', 'M', '15038');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2706', '46', '28', '2', 'Y', '96124');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2707', '46', '28', '2', 'W', '97782');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2708', '46', '28', '2', 'Y', '17092');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2709', '46', '28', '2', 'M', '57020');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2710', '46', '28', '2', 'H', '88858');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2711', '46', '28', '2', 'M', '15065');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2880', '49', '31', '2', 'MA', '7066');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2881', '49', '31', '2', 'T', '8324');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2882', '49', '31', '2', 'TB', '384');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2883', '49', '31', '2', 'T', '8457');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2884', '49', '31', '2', 'WA', '8317');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2885', '49', '31', '2', 'T', '8071');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2886', '49', '31', '2', 'DK', '8205');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3055', '45', '30', '2', 'M', '30935');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3056', '45', '30', '2', 'AR', '7057');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3057', '45', '30', '2', 'AR', '2422');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3058', '45', '30', '2', 'M', '32623');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3059', '45', '30', '2', 'W', '87972');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3060', '45', '30', '2', 'YY', '8101');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3061', '45', '30', '2', 'M', '14920');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3062', '45', '30', '2', 'HH', '2202');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3063', '45', '30', '2', 'Y', '4044');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3064', '45', '30', '2', 'W', '54814');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3065', '45', '30', '2', 'Y', '71632');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3066', '45', '30', '2', 'M', '11461');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3067', '45', '30', '2', 'M', '20637');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3068', '45', '30', '2', 'M', '63570');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3069', '45', '30', '2', 'M', '14922');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3070', '45', '30', '2', 'M', '26556');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3071', '45', '30', '2', 'YB', '93191');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3072', '45', '30', '2', 'W', '20464');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3073', '45', '30', '2', 'Y', '68041');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3074', '45', '30', '2', 'DD', '1040');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3075', '45', '30', '2', 'Y', '39319');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3076', '45', '30', '2', 'W', '75063');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3077', '45', '30', '2', 'AM', '5979');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3078', '45', '30', '2', 'W', '91175');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3079', '45', '30', '2', 'YA', '1008');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3080', '45', '30', '2', 'H', '22228');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3081', '45', '30', '2', 'W', '52513');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3082', '45', '30', '2', 'W', '99924');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3083', '45', '30', '2', 'B', '55449');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3084', '45', '30', '2', 'M', '42589');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3085', '45', '30', '2', 'Y', '59024');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3086', '45', '30', '2', 'AS', '820');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3087', '45', '30', '2', 'BY', '7975');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3088', '45', '30', '2', 'W', '70926');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3089', '45', '30', '2', 'M', '19414');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3090', '45', '30', '2', 'W', '79933');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3091', '45', '30', '2', 'W', '51297');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3092', '45', '30', '2', 'M', '16514');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3093', '45', '30', '2', 'M', '21791');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3094', '45', '30', '2', 'Y', '43081');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3095', '45', '30', '2', 'RW', '3697');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3096', '45', '30', '2', 'R', '128');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3097', '45', '30', '2', 'BB', '2627');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3098', '45', '30', '2', 'M', '14987');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3099', '45', '30', '2', 'M', '27202');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3100', '45', '30', '2', 'RS', '2223');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3101', '45', '30', '2', 'R', '910');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3102', '45', '30', '2', 'W', '55555');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3103', '45', '30', '2', 'M', '73077');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3104', '45', '30', '2', 'W', '92529');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3105', '45', '30', '2', 'W', '52945');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3106', '45', '30', '2', 'M', '73989');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3107', '45', '30', '2', 'Y', '46942');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3108', '45', '30', '2', 'M', '99951');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3109', '45', '30', '2', 'Y', '17060');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3110', '45', '30', '2', 'Y', '63803');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3111', '45', '30', '2', 'W', '52980');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3112', '45', '30', '2', 'M', '23278');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3113', '45', '30', '2', 'M', '15000');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3114', '45', '30', '2', 'M', '26052');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3115', '45', '30', '2', 'Y', '96153');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3116', '45', '30', '2', 'Y', '42709');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3117', '45', '30', '2', 'AW', '5905');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3118', '45', '30', '2', 'HH', '159');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3119', '45', '30', '2', 'Y', '54174');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3120', '45', '30', '2', 'Y', '95359');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3121', '45', '30', '2', 'AY', '652');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3122', '45', '30', '2', 'Y', '50665');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3123', '45', '30', '2', 'W', '88241');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3124', '45', '30', '2', 'MY', '159');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3125', '45', '30', '2', 'M', '59506');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3126', '45', '30', '2', 'Y', '17085');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3127', '45', '30', '2', 'W', '57343');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3128', '45', '30', '2', 'Y', '53470');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3129', '45', '30', '2', 'W', '18717');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3130', '45', '30', '2', 'H', '26086');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3131', '45', '30', '2', 'W', '49966');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3132', '45', '30', '2', 'DD', '7555');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3133', '45', '30', '2', 'HH', '9432');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3134', '45', '30', '2', 'B', '86648');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3135', '45', '30', '2', 'W', '73734');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3136', '45', '30', '2', 'M', '49519');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3137', '45', '30', '2', 'Y', '84061');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3138', '45', '29', '2', 'W', '25550');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3139', '45', '30', '2', 'Y', '21297');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3140', '45', '30', '2', 'BS', '7559');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3141', '45', '30', '2', 'Y', '79735');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3142', '45', '30', '2', 'W', '67900');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3143', '45', '30', '2', 'W', '18418');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3144', '45', '30', '2', 'B', '19311');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3145', '45', '30', '2', 'RM', '4194');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3146', '45', '30', '2', 'BD', '417');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3147', '45', '30', '2', 'M', '18948');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3148', '45', '30', '2', 'W', '53748');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3149', '45', '30', '2', 'DY', '8977');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3150', '45', '30', '2', 'S', '594');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3151', '45', '30', '2', 'M', '97557');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3152', '45', '30', '2', 'YY', '383');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3153', '45', '30', '2', 'R', '7347');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3154', '45', '30', '2', 'W', '55182');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3155', '45', '30', '2', 'Y', '68382');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3156', '45', '30', '2', 'M', '80616');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3157', '45', '30', '2', 'W', '55767');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3158', '45', '30', '2', 'M', '57356');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3159', '45', '30', '2', 'Y', '96561');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3160', '45', '30', '2', 'AS', '1784');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3161', '45', '30', '2', 'W', '71000');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3162', '45', '30', '2', 'Y', '89751');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3163', '45', '30', '2', 'B', '14848');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3164', '45', '30', '2', 'DR', '2805');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3165', '45', '30', '2', 'W', '48573');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3166', '45', '30', '2', 'YY', '4324');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3167', '45', '30', '2', 'DR', '338');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3168', '45', '30', '2', 'M', '63042');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3169', '45', '30', '2', 'M', '15068');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3170', '45', '30', '2', 'A', '70616');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3171', '45', '30', '2', 'AA', '3886');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3172', '45', '30', '2', 'Y', '91043');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3173', '45', '30', '2', 'M', '20072');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3174', '45', '30', '2', 'M', '26147');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3175', '45', '30', '2', 'H', '4609');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3176', '45', '30', '2', 'Y', '66635');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3177', '45', '30', '2', 'AY', '1959');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3178', '45', '30', '2', 'RW', '2013');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3179', '45', '30', '2', 'W', '40644');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3180', '45', '30', '2', 'AY', '7867');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3181', '45', '30', '2', 'DY', '859');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3182', '45', '30', '2', 'W', '16656');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3183', '45', '30', '2', 'W', '43421');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3184', '45', '30', '2', 'Y', '31811');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3185', '45', '30', '2', 'D', '20990');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3186', '45', '30', '2', 'A', '85500');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3187', '45', '30', '2', 'A', '1761');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3188', '45', '30', '2', 'BS', '1814');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3189', '45', '30', '2', 'W', '26659');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3190', '45', '30', '2', 'Y', '13441');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3191', '45', '30', '2', 'W', '4505');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3192', '45', '30', '2', 'M', '41380');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3193', '45', '30', '2', 'A', '88030');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3194', '45', '30', '2', 'Y', '5611');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3195', '45', '30', '2', 'AA', '2149');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3196', '45', '30', '2', 'M', '37891');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3197', '45', '30', '2', 'W', '65399');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3198', '45', '30', '2', 'W', '73633');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3199', '45', '30', '2', 'M', '99766');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3200', '45', '30', '2', 'RM', '2302');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3201', '45', '30', '2', 'W', '98878');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3202', '45', '30', '2', 'W', '54340');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3203', '45', '30', '2', 'S', '6478');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3204', '45', '30', '2', 'B', '12354');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3205', '45', '30', '2', 'A', '141');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3206', '45', '30', '2', 'W', '17451');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3207', '45', '30', '2', 'A', '564');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3208', '45', '30', '2', 'BD', '4444');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3209', '45', '30', '2', 'Y', '69571');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3210', '45', '30', '2', 'W', '78524');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3211', '45', '30', '2', 'R', '31009');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3212', '45', '30', '2', 'Y', '11877');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3213', '45', '30', '2', 'YA', '9300');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3214', '45', '30', '2', 'WW', '1164');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3215', '45', '30', '2', 'M', '98385');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3216', '45', '30', '2', 'Y', '30711');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3217', '45', '30', '2', 'M', '48212');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3218', '45', '30', '2', 'M', '68341');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3219', '45', '30', '2', 'W', '21648');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3220', '45', '30', '2', 'M', '15131');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3221', '45', '30', '2', 'Y', '29554');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3222', '45', '30', '2', 'M', '99988');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3364', '51', '30', '2', 'Y', '50545');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3365', '51', '30', '2', 'W', '19679');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3366', '51', '30', '2', 'M', '62850');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3367', '51', '30', '2', 'R', '77743');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3368', '51', '30', '2', 'W', '91402');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3369', '51', '30', '2', 'M', '24664');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3370', '51', '30', '2', 'W', '48845');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3371', '51', '30', '2', 'M', '15161');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3372', '51', '30', '2', 'BR', '8233');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3373', '51', '30', '2', 'W', '94991');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3374', '51', '30', '2', 'A', '31337');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3375', '51', '30', '2', 'W', '95720');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3376', '51', '30', '2', 'MY', '1237');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3377', '51', '30', '2', 'W', '33720');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3378', '51', '30', '2', 'W', '31929');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3379', '51', '30', '2', 'Y', '96714');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3380', '51', '30', '2', 'SS', '1466');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3381', '51', '30', '2', 'R', '3484');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3382', '51', '30', '2', 'W', '31135');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3383', '51', '30', '2', 'AR', '1127');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3384', '51', '30', '2', 'W', '71097');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3385', '51', '30', '2', 'W', '61174');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3386', '51', '30', '2', 'HD', '3171');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3387', '51', '30', '2', 'W', '48281');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3388', '51', '30', '2', 'AS', '1399');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3389', '51', '30', '2', 'Y', '59915');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3390', '51', '30', '2', 'M', '45761');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3391', '51', '30', '2', 'BY', '8618');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3392', '51', '30', '2', 'W', '32323');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3393', '51', '30', '2', 'WW', '6075');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3394', '51', '30', '2', 'M', '49529');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3395', '51', '30', '2', 'W', '77617');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3396', '51', '30', '2', 'W', '77744');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3397', '51', '30', '2', 'W', '21226');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3398', '51', '30', '2', 'M', '82582');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3399', '51', '30', '2', 'M', '34243');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3400', '51', '30', '2', 'Y', '42367');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3401', '51', '30', '2', 'Y', '42545');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3402', '51', '30', '2', 'AB', '7732');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3403', '51', '30', '2', 'M', '51522');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3404', '51', '30', '2', 'S', '97719');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3405', '51', '30', '2', 'M', '40133');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3406', '51', '30', '2', 'Y', '17140');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3407', '51', '30', '2', 'YA', '439');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3408', '51', '30', '2', 'W', '41188');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3409', '51', '30', '2', 'A', '47399');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3410', '51', '30', '2', 'R', '12008');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3411', '50', '29', '2', 'Y', '90653');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3412', '50', '29', '2', 'B', '8583');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3413', '50', '29', '2', 'M', '65406');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3414', '50', '29', '2', 'M', '58363');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3415', '50', '29', '2', 'W', '16713');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3416', '50', '29', '2', 'YY', '9949');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3417', '50', '29', '2', 'W', '16893');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3418', '50', '29', '2', 'M', '15164');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3419', '50', '29', '2', 'A', '55541');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3420', '50', '29', '2', 'R', '93392');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3421', '50', '29', '2', 'Y', '69386');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3422', '50', '29', '2', 'M', '42049');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3423', '50', '29', '2', 'W', '16714');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3424', '50', '29', '2', 'M', '52252');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3425', '50', '29', '2', 'M', '73031');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3426', '50', '29', '2', 'W', '54949');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3427', '50', '29', '2', 'Y', '17136');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3428', '50', '29', '2', 'W', '16715');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3429', '50', '29', '2', 'Y', '30783');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3430', '50', '29', '2', 'M', '30956');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3431', '50', '29', '2', 'BS', '3739');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3432', '50', '29', '2', 'M', '46787');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3433', '50', '29', '2', 'Y', '29360');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3434', '50', '29', '2', 'M', '66404');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3435', '50', '29', '2', 'M', '63223');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3436', '50', '29', '2', 'AB', '7277');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3437', '50', '29', '2', 'HR', '1120');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3438', '50', '29', '2', 'AY', '9689');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3439', '50', '29', '2', 'M', '32097');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3440', '50', '29', '2', 'Y', '17138');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3441', '50', '29', '2', 'M', '18711');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3442', '50', '29', '2', 'Y', '17137');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3443', '50', '29', '2', 'M', '67144');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3444', '50', '29', '2', 'A', '7696');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3445', '50', '29', '2', 'M', '84711');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3446', '50', '29', '2', 'S', '7173');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3447', '50', '29', '2', 'Y', '29239');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3448', '50', '29', '2', 'W', '19829');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3449', '50', '29', '2', 'W', '16920');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3450', '50', '29', '2', 'Y', '53617');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3451', '50', '29', '2', 'W', '26498');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3452', '50', '29', '2', 'S', '64242');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3453', '50', '29', '2', 'Y', '53896');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3454', '50', '29', '2', 'W', '27811');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3455', '50', '29', '2', 'Y', '92085');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3456', '50', '29', '2', 'M', '97333');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3457', '50', '29', '2', 'Y', '64042');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3466', '52', '28', '2', 'AM', '3239');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3467', '52', '28', '2', 'R', '3467');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3468', '52', '28', '2', 'W', '79439');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3469', '52', '28', '2', 'M', '19096');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3470', '52', '28', '2', 'Y', '98204');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3471', '52', '28', '2', 'W', '1001');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3472', '52', '28', '2', 'W', '57010');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3473', '52', '28', '2', 'M', '55297');
+
+
+#
+# TABLE STRUCTURE FOR: tec_customers
+#
+
+DROP TABLE IF EXISTS `tec_customers`;
+
+CREATE TABLE `tec_customers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(55) NOT NULL,
+  `cf1` varchar(255) NOT NULL,
+  `cf2` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_customers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('1', 'Test Customer', '', '', '012345678', 'test@customer.com');
+INSERT INTO `tec_customers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('2', 'sajid', '', '', '122212121', 'sasasa@live.com');
+INSERT INTO `tec_customers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('3', 'x', 'x', 'x', 'x', 'sasasa@live.com');
+INSERT INTO `tec_customers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('4', 'ghgh', '', '', '', '');
+
+
+#
+# TABLE STRUCTURE FOR: tec_groups
+#
+
+DROP TABLE IF EXISTS `tec_groups`;
+
+CREATE TABLE `tec_groups` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_groups` (`id`, `name`, `description`) VALUES ('1', 'admin', 'Administrator');
+INSERT INTO `tec_groups` (`id`, `name`, `description`) VALUES ('2', 'staff', 'Staff member');
+
+
+#
+# TABLE STRUCTURE FOR: tec_items
+#
+
+DROP TABLE IF EXISTS `tec_items`;
+
+CREATE TABLE `tec_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` char(255) NOT NULL,
+  `code` varchar(50) NOT NULL,
+  `barcode_symbology` varchar(20) NOT NULL DEFAULT 'code39',
+  `quantity` int(11) NOT NULL,
+  `unit` varchar(255) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `alert_quantity` int(11) DEFAULT NULL,
+  `image` varchar(255) NOT NULL DEFAULT 'no_image.png',
+  `store_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('18', 'Yellow Small', '011', 'code39', '388', 'piece', '1', '100', 'no_image.png', '7');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('19', 'Yellow Med', '012', 'code39', '192', 'piece', '1', '100', 'no_image.png', '7');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('20', 'Yellow Big', '013', 'code39', '198', 'piece', '1', '100', 'no_image.png', '7');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('21', 'Red Med', '014', 'code39', '192', 'piece', '2', '100', 'no_image.png', '7');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('22', 'Red Big', '015', 'code39', '196', 'piece', '2', '100', 'no_image.png', '7');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('23', 'Yellow Small', '021', 'code39', '199', 'piece', '1', '100', 'no_image.png', '8');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('24', 'Yellow Med', '022', 'code39', '200', 'piece', '1', '100', 'no_image.png', '8');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('25', 'Yellow Big', '023', 'code39', '200', 'piece', '1', '100', 'no_image.png', '8');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('26', 'Red Med', '024', 'code39', '200', 'piece', '2', '100', 'no_image.png', '8');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('27', 'Red Big', '025', 'code39', '200', 'piece', '2', '100', 'no_image.png', '8');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('28', 'Yellow Small', 'seeb_1', 'code39', '521', 'piece', '1', '0', 'no_image.png', '11');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('29', 'Yellow Med', 'seeb_2', 'code39', '9712', 'piece', '1', '0', 'no_image.png', '11');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('30', 'Yellow Big', 'seeb_3', 'code39', '459', 'piece', '1', '0', 'no_image.png', '11');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('31', 'Red Med', 'seeb_4', 'code39', '92', 'piece', '2', '0', 'no_image.png', '11');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('32', 'Red Big', 'seeb_5', 'code39', '34', 'piece', '2', '0', 'no_image.png', '11');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('33', 'Gov - Medium', 'Seeb_6', 'code39', '10', 'piece', '3', '0', 'no_image.png', '11');
+
+
+#
+# TABLE STRUCTURE FOR: tec_login_attempts
+#
+
+DROP TABLE IF EXISTS `tec_login_attempts`;
+
+CREATE TABLE `tec_login_attempts` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `ip_address` varbinary(16) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `time` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: tec_sessions
+#
+
+DROP TABLE IF EXISTS `tec_sessions`;
+
+CREATE TABLE `tec_sessions` (
+  `id` varchar(40) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) unsigned NOT NULL DEFAULT '0',
+  `data` blob NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ci_sessions_timestamp` (`timestamp`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('0895c0t9v5fd2buoclsai80lmm62ufkl', '85.154.122.124', '1523426239', '__ci_last_regenerate|i:1523425841;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1523333226\";last_ip|s:12:\"82.178.6.123\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('215jcu5vhup7smrennna8u99dbp7bgh5', '82.178.83.143', '1523348690', '__ci_last_regenerate|i:1523348596;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('3hbe2dfps062dtpneb3ovvo5o8m2tus9', '94.185.58.104', '1523470950', '__ci_last_regenerate|i:1523470826;requested_page|s:0:\"\";identity|s:19:\"admin@gulfcyber.com\";username|s:4:\"gulf\";email|s:19:\"admin@gulfcyber.com\";user_id|s:1:\"8\";old_last_login|s:10:\"1522824386\";last_ip|s:13:\"94.185.57.180\";avatar|N;gender|N;group_id|s:1:\"1\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('4bmqrkica28go3iclc74f5tbo76lnhvl', '82.178.83.143', '1523353877', '__ci_last_regenerate|i:1523353354;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('5790qn78cdeo536irgj9tr4gkqsltlid', '5.36.217.229', '1523439408', '');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('60lj3sip3mg9locv5p7qdf4u5pu092p2', '5.36.219.150', '1523339938', '__ci_last_regenerate|i:1523339188;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('8tajc38rfsaefq7p820r1ikpgit9udiq', '5.36.219.150', '1523346424', '__ci_last_regenerate|i:1523342511;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('90n742gpdivgg1ftr1sk3r1f5tk2u979', '5.36.156.125', '1523422637', '__ci_last_regenerate|i:1523420860;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1523333226\";last_ip|s:12:\"82.178.6.123\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('9h8g9ugdj7u9d8kalf2bdgttep8cfgb7', '82.178.83.143', '1523348432', '__ci_last_regenerate|i:1523347937;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('9u5224iaf2ji1sfh378m1t5h9b5h448h', '82.178.83.143', '1523347710', '__ci_last_regenerate|i:1523346748;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('bcse59opp9b3dn9si20hqvehm679rfcf', '82.178.6.123', '1523336186', '__ci_last_regenerate|i:1523335893;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('bmtl44arfntvojscng7smdjvmt70g9do', '94.185.58.104', '1523497011', '__ci_last_regenerate|i:1523496970;identity|s:19:\"admin@gulfcyber.com\";username|s:4:\"gulf\";email|s:19:\"admin@gulfcyber.com\";user_id|s:1:\"8\";old_last_login|s:10:\"1523470835\";last_ip|s:13:\"94.185.58.104\";avatar|N;gender|N;group_id|s:1:\"1\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('esvhkvhjh231sm43ngh2rhif701lbm6d', '142.4.218.156', '1523389919', '__ci_last_regenerate|i:1523389919;requested_page|s:0:\"\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('f29ndd1gpnqh3o42jcl0fivo6e1kvvo3', '82.178.83.143', '1523349092', '__ci_last_regenerate|i:1523348912;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('g7ki67ol5j4cl6or63huqct2sad99s4o', '82.178.83.143', '1523352565', '__ci_last_regenerate|i:1523352294;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('gpeq5osgn80f9g9gbnugqcqouvo56g3f', '5.36.219.150', '1523340166', '__ci_last_regenerate|i:1523340053;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('j5f6pu6n0gfvnpeeiom64ock9g5ri8rr', '5.36.156.125', '1523424399', '__ci_last_regenerate|i:1523422844;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1523333226\";last_ip|s:12:\"82.178.6.123\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('j83mjdarggvqt2a93jiqu561maqu9uh9', '82.178.83.143', '1523354538', '__ci_last_regenerate|i:1523354459;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('jqhj69itbsvkqbmo3uacmcgl8a8t7n3p', '85.154.122.124', '1523426419', '__ci_last_regenerate|i:1523426319;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1523333226\";last_ip|s:12:\"82.178.6.123\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('lh6b8h6psd6pck8kjqo9kdloero358u5', '5.36.219.150', '1523342230', '__ci_last_regenerate|i:1523340998;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('loflv5pntisil86e6ds42s8vnq02docm', '82.178.6.123', '1523339155', '__ci_last_regenerate|i:1523336230;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('msnru99ehrh2jm2i0msp5tbdbtkhv8jj', '82.178.83.143', '1523354387', '__ci_last_regenerate|i:1523354119;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('ng45p63f55j5tsvev0utke9q7ivtvq1a', '5.36.219.150', '1523340878', '__ci_last_regenerate|i:1523340686;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('o0l0qavs6r7era83mad5jumfctvbpmqk', '82.178.83.143', '1523353145', '__ci_last_regenerate|i:1523352610;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('p6fvhbrcb5eeago99cimbbgdfk5rlku6', '82.178.6.123', '1523335640', '__ci_last_regenerate|i:1523333194;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('u0l09tv0q614m2lisnpnpbvie4m139pq', '82.178.83.143', '1523349561', '__ci_last_regenerate|i:1523349326;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1522210375\";last_ip|s:13:\"82.178.113.35\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+
+
+#
+# TABLE STRUCTURE FOR: tec_settings
+#
+
+DROP TABLE IF EXISTS `tec_settings`;
+
+CREATE TABLE `tec_settings` (
+  `setting_id` int(1) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `site_name` varchar(55) NOT NULL,
+  `rows_per_page` int(2) NOT NULL,
+  `dateformat` varchar(20) DEFAULT NULL,
+  `timeformat` varchar(20) DEFAULT NULL,
+  `language` varchar(20) NOT NULL,
+  `version` varchar(10) NOT NULL DEFAULT '1.0',
+  `theme` varchar(20) NOT NULL,
+  `timezone` varchar(255) NOT NULL DEFAULT '0',
+  `default_email` varchar(100) DEFAULT NULL,
+  `mmode` tinyint(1) NOT NULL,
+  `captcha` tinyint(1) NOT NULL DEFAULT '1',
+  `purchase_code` varchar(100) DEFAULT NULL,
+  `envato_username` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`setting_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_settings` (`setting_id`, `logo`, `site_name`, `rows_per_page`, `dateformat`, `timeformat`, `language`, `version`, `theme`, `timezone`, `default_email`, `mmode`, `captcha`, `purchase_code`, `envato_username`) VALUES ('1', 'logo.png', 'United Number Plate L.L.C', '10', 'jS F Y', 'h:i A', 'english', '2.1', 'default', 'Asia/Kuala_Lumpur', 'admin@gulfcyber.com', '0', '0', NULL, NULL);
+
+
+#
+# TABLE STRUCTURE FOR: tec_stores
+#
+
+DROP TABLE IF EXISTS `tec_stores`;
+
+CREATE TABLE `tec_stores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `store_name` varchar(50) NOT NULL,
+  `location` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('7', 'Store 1 ', '1');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('8', 'Store 2', '2');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('9', 'Store 3', '3');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('10', 'Store 4', '4');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('11', 'Seeb', 'Seeb');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('12', 'qurum', 'Qurum');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('13', 'khoud', 'khoud');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('14', 'amirat', 'amirat');
+
+
+#
+# TABLE STRUCTURE FOR: tec_suppliers
+#
+
+DROP TABLE IF EXISTS `tec_suppliers`;
+
+CREATE TABLE `tec_suppliers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(55) NOT NULL,
+  `cf1` varchar(255) NOT NULL,
+  `cf2` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_suppliers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('1', 'Test Supplier', '', '', '012345678', 'test@supplier.com');
+INSERT INTO `tec_suppliers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('2', 'testing', '12', '123', '1122', 'test@gmail.com');
+
+
+#
+# TABLE STRUCTURE FOR: tec_user_logins
+#
+
+DROP TABLE IF EXISTS `tec_user_logins`;
+
+CREATE TABLE `tec_user_logins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  `ip_address` varbinary(16) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('1', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-01 08:55:24');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('2', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-01 15:21:36');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('3', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-02 04:44:36');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('4', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-02 11:09:05');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('5', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-02 14:09:37');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('6', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-03 05:18:18');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('7', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-05 12:20:31');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('8', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-05 12:41:38');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('9', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-05 16:27:05');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('10', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-06 06:14:45');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('11', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-06 08:54:14');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('12', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-06 13:28:01');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('13', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-06 14:59:34');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('14', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-07 06:10:14');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('15', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-07 07:02:49');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('16', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-07 07:21:36');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('17', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-07 13:52:20');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('18', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-07 14:18:54');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('19', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-07 17:07:43');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('20', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-07 17:41:54');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('21', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-08 05:56:08');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('22', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-08 06:18:23');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('23', '2', NULL, '39.42.105.165', 'hamidmuslim@live.com', '2018-01-08 06:36:59');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('24', '1', NULL, '39.42.105.165', 'admin@tecdiary.com', '2018-01-08 06:41:09');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('25', '1', NULL, '39.42.105.165', 'admin@tecdiary.com', '2018-01-08 08:15:17');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('26', '3', NULL, '39.42.105.165', 'revodomains@gmail.com', '2018-01-08 08:17:46');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('27', '1', NULL, '39.42.105.165', 'admin@tecdiary.com', '2018-01-08 08:48:53');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('28', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-08 14:55:22');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('29', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-08 15:12:04');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('30', '1', NULL, '39.42.105.165', 'admin@tecdiary.com', '2018-01-08 15:28:22');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('31', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-08 15:55:59');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('32', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-09 03:06:07');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('33', '1', NULL, '39.42.105.165', 'admin@tecdiary.com', '2018-01-09 08:31:03');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('34', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-11 14:16:51');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('35', '7', NULL, '94.185.25.16', 'seeb@seeb.com', '2018-01-11 14:26:59');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('36', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-11 14:30:29');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('37', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-11 17:48:07');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('38', '7', NULL, '94.185.25.16', 'seeb@seeb.com', '2018-01-11 17:51:06');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('39', '1', NULL, '94.185.29.90', 'admin@tecdiary.com', '2018-01-13 13:28:22');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('40', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-13 16:17:01');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('41', '9', NULL, '94.185.29.90', 'store1@store1.com', '2018-01-13 17:31:18');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('42', '9', NULL, '94.185.29.90', 'store1@store1.com', '2018-01-13 17:35:52');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('43', '10', NULL, '94.185.29.90', 'store2@store2.com', '2018-01-13 18:32:59');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('44', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-14 05:32:18');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('45', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-14 17:02:58');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('46', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-15 08:29:29');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('47', '8', NULL, '5.36.118.43', 'admin@gulfcyber.com', '2018-01-16 05:48:02');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('48', '9', NULL, '5.36.118.43', 'store1@store1.com', '2018-01-16 05:48:49');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('49', '9', NULL, '37.200.156.125', 'store1@store1.com', '2018-01-16 06:33:00');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('50', '8', NULL, '37.200.156.125', 'admin@gulfcyber.com', '2018-01-16 06:48:21');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('51', '8', NULL, '37.200.156.125', 'admin@gulfcyber.com', '2018-01-16 06:51:15');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('52', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-17 05:43:36');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('53', '1', NULL, '39.42.102.223', 'admin@tecdiary.com', '2018-01-18 08:50:47');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('54', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-18 13:50:18');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('55', '9', NULL, '94.185.29.90', 'store1@store1.com', '2018-01-18 14:34:28');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('56', '1', NULL, '39.42.127.251', 'admin@tecdiary.com', '2018-01-20 16:32:34');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('57', '2', NULL, '39.42.127.251', 'hamidmuslim@live.com', '2018-01-20 16:35:08');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('58', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-21 13:45:58');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('59', '9', NULL, '94.185.29.90', 'store1@store1.com', '2018-01-21 13:47:05');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('60', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-24 04:30:26');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('61', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-24 05:20:15');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('62', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-24 06:12:58');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('63', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-24 08:00:04');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('64', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-24 08:02:15');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('65', '9', NULL, '94.185.29.90', 'store1@store1.com', '2018-01-24 08:32:04');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('66', '9', NULL, '94.185.60.132', 'store1@store1.com', '2018-02-08 04:30:48');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('67', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-02-27 18:39:25');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('68', '7', NULL, '94.185.57.180', 'seeb@seeb.com', '2018-02-27 18:42:35');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('69', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-02-27 18:46:00');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('70', '7', NULL, '85.154.81.183', 'seeb@seeb.com', '2018-02-28 04:17:26');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('71', '7', NULL, '82.178.74.140', 'seeb@seeb.com', '2018-02-28 06:17:03');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('72', '8', NULL, '82.178.74.140', 'admin@gulfcyber.com', '2018-02-28 06:22:36');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('73', '7', NULL, '82.178.74.140', 'seeb@seeb.com', '2018-02-28 06:25:04');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('74', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-03 11:38:18');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('75', '7', NULL, '82.178.149.99', 'seeb@seeb.com', '2018-03-05 04:48:07');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('76', '7', NULL, '82.178.149.99', 'seeb@seeb.com', '2018-03-05 04:52:07');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('77', '8', NULL, '5.37.140.106', 'admin@gulfcyber.com', '2018-03-05 08:08:42');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('78', '7', NULL, '85.154.76.36', 'seeb@unpc.com', '2018-03-05 08:41:05');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('79', '7', NULL, '94.185.57.180', 'seeb@unpc.com', '2018-03-07 08:07:30');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('80', '11', NULL, '94.185.57.180', 'qurum@unpc.com', '2018-03-07 08:08:08');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('81', '12', NULL, '94.185.57.180', 'khoud@unpc.com', '2018-03-07 08:08:31');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('82', '13', NULL, '94.185.57.180', 'amirat@unpc.com', '2018-03-07 08:08:49');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('83', '7', NULL, '85.154.21.226', 'seeb@unpc.com', '2018-03-07 08:25:43');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('84', '7', NULL, '85.154.203.86', 'seeb@unpc.com', '2018-03-12 05:00:28');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('85', '7', NULL, '5.37.249.236', 'seeb@unpc.com', '2018-03-13 06:04:04');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('86', '8', NULL, '5.37.249.236', 'admin@gulfcyber.com', '2018-03-13 06:05:51');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('87', '7', NULL, '94.185.57.180', 'seeb@unpc.com', '2018-03-17 13:01:32');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('88', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-17 13:04:22');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('89', '7', NULL, '94.185.57.180', 'seeb@unpc.com', '2018-03-17 13:05:27');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('90', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-17 13:12:04');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('91', '7', NULL, '94.185.57.180', 'seeb@unpc.com', '2018-03-17 13:12:51');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('92', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-17 13:25:23');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('93', '7', NULL, '94.185.57.180', 'seeb@unpc.com', '2018-03-17 13:32:00');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('94', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-17 14:05:01');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('95', '7', NULL, '5.36.145.203', 'seeb@unpc.com', '2018-03-18 06:05:07');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('96', '8', NULL, '5.36.145.203', 'admin@gulfcyber.com', '2018-03-18 06:09:24');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('97', '7', NULL, '5.36.145.203', 'seeb@unpc.com', '2018-03-18 06:15:14');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('98', '7', NULL, '5.36.145.203', 'seeb@unpc.com', '2018-03-18 06:28:41');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('99', '8', NULL, '5.36.145.203', 'admin@gulfcyber.com', '2018-03-18 06:54:24');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('100', '7', NULL, '5.36.145.203', 'seeb@unpc.com', '2018-03-18 06:58:54');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('101', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-18 09:47:16');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('102', '7', NULL, '82.178.0.115', 'seeb@unpc.com', '2018-03-19 06:17:07');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('103', '7', NULL, '5.37.249.145', 'seeb@unpc.com', '2018-03-21 04:34:08');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('104', '7', NULL, '82.178.94.141', 'seeb@unpc.com', '2018-03-25 08:14:01');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('105', '7', NULL, '82.178.94.141', 'seeb@unpc.com', '2018-03-25 08:18:50');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('106', '7', NULL, '5.36.138.152', 'seeb@unpc.com', '2018-03-27 06:07:57');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('107', '7', NULL, '82.178.133.51', 'seeb@unpc.com', '2018-03-27 09:50:29');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('108', '7', NULL, '82.178.133.51', 'seeb@unpc.com', '2018-03-27 09:50:45');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('109', '7', NULL, '82.178.133.51', 'seeb@unpc.com', '2018-03-27 09:51:05');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('110', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-27 12:54:26');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('111', '7', NULL, '82.178.113.35', 'seeb@unpc.com', '2018-03-28 04:12:55');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('112', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-04-04 06:46:26');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('113', '7', NULL, '82.178.6.123', 'seeb@unpc.com', '2018-04-10 04:07:06');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('114', '7', NULL, '5.36.156.125', 'seeb@unpc.com', '2018-04-11 04:28:56');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('115', '8', NULL, '94.185.58.104', 'admin@gulfcyber.com', '2018-04-11 18:20:35');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('116', '8', NULL, '94.185.58.104', 'admin@gulfcyber.com', '2018-04-12 01:36:17');
+
+
+#
+# TABLE STRUCTURE FOR: tec_users
+#
+
+DROP TABLE IF EXISTS `tec_users`;
+
+CREATE TABLE `tec_users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `last_ip_address` varbinary(45) DEFAULT NULL,
+  `ip_address` varbinary(45) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `salt` varchar(40) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `activation_code` varchar(40) DEFAULT NULL,
+  `forgotten_password_code` varchar(40) DEFAULT NULL,
+  `forgotten_password_time` int(11) unsigned DEFAULT NULL,
+  `remember_code` varchar(40) DEFAULT NULL,
+  `created_on` int(11) unsigned NOT NULL,
+  `last_login` int(11) unsigned DEFAULT NULL,
+  `active` tinyint(1) unsigned DEFAULT NULL,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `avatar` varchar(55) DEFAULT NULL,
+  `gender` varchar(20) DEFAULT NULL,
+  `group_id` int(10) unsigned NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `hash` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `group_id` (`group_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('1', '39.42.127.251', '\0\0', 'admin', '2a7c8e0896640da11cef8c5767e56efb359f947e', NULL, 'admin@tecdiary.com', NULL, '6098efc68f769bb79f710ec1c7f4f217f4737794', '1439445583', NULL, '1351661704', '1516465954', '1', 'Admin', 'Admin', 'Simple Stock Manager', '012345678', NULL, 'male', '1', '0', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('2', '39.42.127.251', '::1', 'hamid', '45502865cbb6621c755316e4d675e849b2e2ab82', NULL, 'hamidmuslim@live.com', NULL, NULL, NULL, NULL, '1515170082', '1516466108', '1', 'hamid', 'Maqbool', NULL, '123123', NULL, 'male', '2', '7', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('3', '39.42.105.165', '39.42.105.165', 'sajidkhan', 'd339f74bb5dd38f1f542b44f8ceacf0d08aec3be', NULL, 'revodomains@gmail.com', NULL, NULL, NULL, NULL, '1515399425', '1515399466', '1', 'sajid', 'ali', NULL, '03451154458', NULL, 'male', '2', '3', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('5', NULL, '198.23.196.21', 'jhhkk', '92a5f73fe5024f438a7a4047b002a967d6d864d4', NULL, 'junkpk143@outlook.com', NULL, NULL, NULL, NULL, '1515408355', '1515408355', '1', 'Hamid', 'Maqbool', NULL, '213', NULL, 'male', '2', '4', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('7', '5.36.156.125', '94.185.25.16', 'seeb', 'eb827dd4afce66e066302410c706cbef419cb492', NULL, 'seeb@unpc.com', NULL, NULL, NULL, NULL, '1515680507', '1523420936', '1', 'seeb', 'seeb', NULL, '8887777', NULL, 'male', '2', '11', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('8', '94.185.58.104', '94.185.29.90', 'gulf', '00ba761f1db82117de54d38346314278708a3c46', NULL, 'admin@gulfcyber.com', NULL, NULL, NULL, NULL, '1515850232', '1523496977', '1', 'GULF', 'gulf', NULL, '96781885', NULL, NULL, '1', '0', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('11', '94.185.57.180', '5.37.140.106', 'qurum', 'b7f7c87e6d0da7f952aab93b2d2da4c4edba1a9a', NULL, 'qurum@unpc.com', NULL, NULL, NULL, NULL, '1520237521', '1520410088', '1', 'qurum', '', NULL, '12345784', NULL, NULL, '2', '12', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('12', '94.185.57.180', '5.37.140.106', 'khoud', '16c23a2965610a25eedd2ba9c6e9accff6a082ed', NULL, 'khoud@unpc.com', NULL, NULL, NULL, NULL, '1520237662', '1520410111', '1', 'Khoud', '', NULL, '87548759', NULL, NULL, '2', '13', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('13', '94.185.57.180', '5.37.140.106', 'amirat', '5f93f396b27581a5bb7868b9fbdffd429dff256e', NULL, 'amirat@unpc.com', NULL, NULL, NULL, NULL, '1520237700', '1520410129', '1', 'amirat', '', NULL, '74857485', NULL, NULL, '2', '14', NULL);
+
+

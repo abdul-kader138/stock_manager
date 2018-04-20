@@ -1,0 +1,14 @@
+[08-Jan-2018 06:32:24 Etc/GMT] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/unitednumberplat/public_html/app/lib/libraries/Session/Session.php on line 143
+[08-Jan-2018 06:32:34 Etc/GMT] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/unitednumberplat/public_html/app/lib/libraries/Session/Session.php on line 143
+[08-Jan-2018 06:35:27 Etc/GMT] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/unitednumberplat/public_html/app/lib/libraries/Session/Session.php on line 143
+[08-Jan-2018 06:35:43 Etc/GMT] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/unitednumberplat/public_html/app/lib/libraries/Session/Session.php on line 143
+[08-Jan-2018 06:35:47 Etc/GMT] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/unitednumberplat/public_html/app/lib/libraries/Session/Session.php on line 143
+[08-Jan-2018 06:35:48 Etc/GMT] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/unitednumberplat/public_html/app/lib/libraries/Session/Session.php on line 143
+[08-Jan-2018 06:35:51 Etc/GMT] PHP Fatal error:  session_start(): Failed to initialize storage module: user (path: sessions) in /home/unitednumberplat/public_html/app/lib/libraries/Session/Session.php on line 143
+[08-Jan-2018 06:42:56 Etc/GMT] PHP Fatal error:  Call to undefined method Check_in_model::getAllStores() in /home/unitednumberplat/public_html/app/app/controllers/Check_out.php on line 145
+[08-Jan-2018 06:43:16 Etc/GMT] PHP Fatal error:  Call to undefined method Check_in_model::getAllStores() in /home/unitednumberplat/public_html/app/app/controllers/Check_out.php on line 145
+[08-Jan-2018 08:14:16 Etc/GMT] PHP Fatal error:  Call to undefined method Check_in_model::getAllStores() in /home/unitednumberplat/public_html/app/app/controllers/Check_out.php on line 145
+[08-Jan-2018 08:15:22 Etc/GMT] PHP Fatal error:  Call to undefined method Check_in_model::getAllStores() in /home/unitednumberplat/public_html/app/app/controllers/Check_out.php on line 145
+[08-Jan-2018 08:18:13 Etc/GMT] PHP Fatal error:  Call to undefined method Check_in_model::getAllStores() in /home/unitednumberplat/public_html/app/app/controllers/Check_out.php on line 145
+[08-Jan-2018 08:18:40 Etc/GMT] PHP Fatal error:  Call to undefined method Check_in_model::getAllStores() in /home/unitednumberplat/public_html/app/app/controllers/Check_out.php on line 145
+[08-Jan-2018 08:18:43 Etc/GMT] PHP Fatal error:  Call to undefined method Check_in_model::getAllStores() in /home/unitednumberplat/public_html/app/app/controllers/Check_out.php on line 145

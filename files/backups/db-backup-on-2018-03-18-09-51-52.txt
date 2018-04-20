@@ -1,0 +1,591 @@
+#
+# TABLE STRUCTURE FOR: tec_categories
+#
+
+DROP TABLE IF EXISTS `tec_categories`;
+
+CREATE TABLE `tec_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(20) NOT NULL,
+  `name` varchar(55) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_categories` (`id`, `code`, `name`) VALUES ('1', '01', 'Yellow');
+INSERT INTO `tec_categories` (`id`, `code`, `name`) VALUES ('2', '02', 'Red');
+INSERT INTO `tec_categories` (`id`, `code`, `name`) VALUES ('3', '03', 'Government ');
+INSERT INTO `tec_categories` (`id`, `code`, `name`) VALUES ('4', '04', 'Export');
+INSERT INTO `tec_categories` (`id`, `code`, `name`) VALUES ('5', '05', 'Green');
+INSERT INTO `tec_categories` (`id`, `code`, `name`) VALUES ('6', '06', 'Motorcycle ');
+
+
+#
+# TABLE STRUCTURE FOR: tec_check_in
+#
+
+DROP TABLE IF EXISTS `tec_check_in`;
+
+CREATE TABLE `tec_check_in` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `reference` varchar(55) NOT NULL,
+  `date` datetime NOT NULL,
+  `attachment` varchar(55) DEFAULT NULL,
+  `supplier` int(11) DEFAULT NULL,
+  `store_id` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `note` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_check_in` (`id`, `reference`, `date`, `attachment`, `supplier`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('17', '711632850879', '2018-03-18 06:17:00', NULL, NULL, '11', '7', NULL, NULL, 'تم الاستلام دون ايصال');
+
+
+#
+# TABLE STRUCTURE FOR: tec_check_in_items
+#
+
+DROP TABLE IF EXISTS `tec_check_in_items`;
+
+CREATE TABLE `tec_check_in_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `check_in_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `stock_in_no` (`check_in_id`,`item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('1', '1', '3', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('6', '3', '9', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('7', '3', '10', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('8', '4', '12', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('9', '5', '12', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('10', '6', '12', '2');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('11', '7', '13', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('12', '8', '13', '20');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('13', '9', '15', '1');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('14', '10', '15', '5');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('15', '11', '17', '2');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('16', '12', '17', '200');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('17', '13', '18', '100');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('18', '14', '18', '100');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('19', '15', '28', '1000');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('20', '16', '30', '800');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('21', '17', '28', '70');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('22', '17', '29', '30');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('23', '17', '30', '100');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('24', '17', '31', '100');
+INSERT INTO `tec_check_in_items` (`id`, `check_in_id`, `item_id`, `quantity`) VALUES ('25', '17', '32', '50');
+
+
+#
+# TABLE STRUCTURE FOR: tec_check_out
+#
+
+DROP TABLE IF EXISTS `tec_check_out`;
+
+CREATE TABLE `tec_check_out` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `reference` varchar(55) NOT NULL,
+  `date` datetime NOT NULL,
+  `attachment` varchar(55) DEFAULT NULL,
+  `customer` int(11) DEFAULT NULL,
+  `store_id` int(11) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `note` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('38', '827823745403', '2018-03-18 06:20:00', NULL, NULL, '11', '7', NULL, NULL, '');
+INSERT INTO `tec_check_out` (`id`, `reference`, `date`, `attachment`, `customer`, `store_id`, `created_by`, `updated_by`, `updated_at`, `note`) VALUES ('39', '274125650039', '2018-03-18 06:24:00', NULL, NULL, '11', '7', '7', '2018-03-18 06:27:39', '');
+
+
+#
+# TABLE STRUCTURE FOR: tec_check_out_items
+#
+
+DROP TABLE IF EXISTS `tec_check_out_items`;
+
+CREATE TABLE `tec_check_out_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `check_out_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `plate_code` varchar(250) NOT NULL,
+  `plate_number` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `stock_out_no` (`check_out_id`,`item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('1', '1', '9', '3', '', '');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('2', '1', '9', '3', '', '');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('3', '2', '9', '2', '', '');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('4', '2', '9', '1', '', '');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('5', '3', '9', '1', '', '');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('6', '8', '9', '1', '455', '554');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('7', '9', '9', '1', 'ddd', '55');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('13', '10', '9', '1', '123', 'new');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('14', '10', '9', '1', 'ss', 'ds');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('15', '11', '13', '1', '12', '10');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('16', '12', '13', '2', '78', '12');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('17', '13', '13', '3', '10', '5');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('18', '13', '13', '3', '10', '5');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('19', '14', '13', '8', '12', '10');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('20', '15', '14', '1', '10', '5');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('21', '16', '15', '2', '16', '15');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('22', '16', '15', '2', '16', '15');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('37', '17', '17', '1', '3332', 'eee');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('38', '17', '17', '2', '3322', 'ddd');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('39', '18', '17', '2', 'ee', '222');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('40', '18', '17', '2', 'sw', '4433');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('41', '19', '17', '2', '22', '2222');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('42', '20', '17', '2', '333', 'ddd');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('43', '21', '17', '2', 'ff', '44555');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('44', '21', '17', '2', 'ww', '3333');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('45', '22', '17', '2', 'ab', '23445');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('49', '23', '17', '2', 'dd', '3333');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('50', '23', '17', '2', 'ac', '2211');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('51', '23', '17', '2', '22', 'sss');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('52', '23', '17', '2', '22', 'sdd');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('53', '23', '17', '2', '22', 'ccd');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('54', '23', '17', '2', '22', 'ddd');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('55', '23', '17', '2', '22', 'sss');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('56', '23', '17', '2', '22', 'ed');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('57', '23', '17', '2', '32', 'dd');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('58', '24', '23', '1', 'ab', '22333');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('59', '25', '18', '2', 'ab', '2233');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('60', '25', '19', '2', 'ac', '3455');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('61', '25', '18', '2', 'ss', '2233');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('62', '25', '20', '2', 'wa', '1237');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('63', '25', '21', '2', 'ax', '1233');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('64', '25', '22', '2', 'ax', '7788');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('65', '26', '19', '2', 'ab', '33222');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('66', '26', '21', '2', 'sc', '33');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('67', '27', '19', '2', 'ab', '6656');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('68', '27', '21', '2', 'gh', '442');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('70', '28', '19', '2', 'hh', '6666');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('71', '29', '18', '2', 'sc', '2233');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('72', '30', '18', '2', 'ab', '7788');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('73', '30', '21', '2', 'tr', '66778');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('74', '31', '28', '2', 'AM', '4422');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('75', '31', '28', '1', 'A', '421');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('76', '32', '30', '1', 'bb', '12345');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('83', '33', '28', '2', 'ed', '333222');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('84', '33', '18', '2', 'eed', '11');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('86', '34', '28', '2', 'sx', '222');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('87', '34', '29', '2', 'cc', '11');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('88', '35', '18', '2', 'ss', '33');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('90', '36', '29', '2', 'ww', '232');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('97', '37', '28', '2', 'ww', '11');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('98', '37', '30', '2', 'ww', '11');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('99', '37', '31', '2', 's', '20');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('100', '37', '22', '2', 'dd', '33');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('101', '38', '28', '50', 'qurum', '100');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('105', '39', '28', '2', 'hh', '5415');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('106', '39', '31', '2', 'yh', '7778');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('107', '39', '29', '2', 'd', '4745');
+INSERT INTO `tec_check_out_items` (`id`, `check_out_id`, `item_id`, `quantity`, `plate_code`, `plate_number`) VALUES ('108', '39', '29', '2', 'y', '558');
+
+
+#
+# TABLE STRUCTURE FOR: tec_customers
+#
+
+DROP TABLE IF EXISTS `tec_customers`;
+
+CREATE TABLE `tec_customers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(55) NOT NULL,
+  `cf1` varchar(255) NOT NULL,
+  `cf2` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_customers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('1', 'Test Customer', '', '', '012345678', 'test@customer.com');
+INSERT INTO `tec_customers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('2', 'sajid', '', '', '122212121', 'sasasa@live.com');
+INSERT INTO `tec_customers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('3', 'x', 'x', 'x', 'x', 'sasasa@live.com');
+INSERT INTO `tec_customers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('4', 'ghgh', '', '', '', '');
+
+
+#
+# TABLE STRUCTURE FOR: tec_groups
+#
+
+DROP TABLE IF EXISTS `tec_groups`;
+
+CREATE TABLE `tec_groups` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_groups` (`id`, `name`, `description`) VALUES ('1', 'admin', 'Administrator');
+INSERT INTO `tec_groups` (`id`, `name`, `description`) VALUES ('2', 'staff', 'Staff member');
+
+
+#
+# TABLE STRUCTURE FOR: tec_items
+#
+
+DROP TABLE IF EXISTS `tec_items`;
+
+CREATE TABLE `tec_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` char(255) NOT NULL,
+  `code` varchar(50) NOT NULL,
+  `barcode_symbology` varchar(20) NOT NULL DEFAULT 'code39',
+  `quantity` int(11) NOT NULL,
+  `unit` varchar(255) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `alert_quantity` int(11) DEFAULT NULL,
+  `image` varchar(255) NOT NULL DEFAULT 'no_image.png',
+  `store_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('18', 'Yellow Small', '011', 'code39', '388', 'piece', '1', '100', 'no_image.png', '7');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('19', 'Yellow Med', '012', 'code39', '192', 'piece', '1', '100', 'no_image.png', '7');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('20', 'Yellow Big', '013', 'code39', '198', 'piece', '1', '100', 'no_image.png', '7');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('21', 'Red Med', '014', 'code39', '192', 'piece', '2', '100', 'no_image.png', '7');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('22', 'Red Big', '015', 'code39', '196', 'piece', '2', '100', 'no_image.png', '7');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('23', 'Yellow Small', '021', 'code39', '199', 'piece', '1', '100', 'no_image.png', '8');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('24', 'Yellow Med', '022', 'code39', '200', 'piece', '1', '100', 'no_image.png', '8');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('25', 'Yellow Big', '023', 'code39', '200', 'piece', '1', '100', 'no_image.png', '8');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('26', 'Red Med', '024', 'code39', '200', 'piece', '2', '100', 'no_image.png', '8');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('27', 'Red Big', '025', 'code39', '200', 'piece', '2', '100', 'no_image.png', '8');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('28', 'Yellow Small', 'seeb_1', 'code39', '1019', 'piece', '1', '0', 'no_image.png', '11');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('29', 'Yellow Med', 'seeb_2', 'code39', '32', 'piece', '1', '0', 'no_image.png', '11');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('30', 'Yellow Big', 'seeb_3', 'code39', '907', 'piece', '1', '0', 'no_image.png', '11');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('31', 'Red Med', 'seeb_4', 'code39', '106', 'piece', '2', '0', 'no_image.png', '11');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('32', 'Red Big', 'seeb_5', 'code39', '60', 'piece', '2', '0', 'no_image.png', '11');
+INSERT INTO `tec_items` (`id`, `name`, `code`, `barcode_symbology`, `quantity`, `unit`, `category_id`, `alert_quantity`, `image`, `store_id`) VALUES ('33', 'Gov - Medium', 'Seeb_6', 'code39', '10', 'piece', '3', '0', 'no_image.png', '11');
+
+
+#
+# TABLE STRUCTURE FOR: tec_login_attempts
+#
+
+DROP TABLE IF EXISTS `tec_login_attempts`;
+
+CREATE TABLE `tec_login_attempts` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `ip_address` varbinary(16) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `time` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES ('25', '94.185.57.180', 'seeb@seeb.com', '1521291921');
+
+
+#
+# TABLE STRUCTURE FOR: tec_sessions
+#
+
+DROP TABLE IF EXISTS `tec_sessions`;
+
+CREATE TABLE `tec_sessions` (
+  `id` varchar(40) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `timestamp` int(10) unsigned NOT NULL DEFAULT '0',
+  `data` blob NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ci_sessions_timestamp` (`timestamp`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('00062dlqh2rajm7kkoqicvu04tt1gav5', '78.129.250.17', '1520358716', '__ci_last_regenerate|i:1520358716;');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('0bhq57htiiddmrg1poba7492n0hkut1f', '69.58.178.56', '1520363795', '__ci_last_regenerate|i:1520363794;requested_page|s:0:\"\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('0r52grb5a9c2kb6urctpin8mh9cgl8ln', '94.185.57.180', '1521291962', '__ci_last_regenerate|i:1521291912;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1521291692\";last_ip|s:13:\"94.185.57.180\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('13nlmtl6r4o018fuffqtpctl5hgjsic0', '94.185.57.180', '1520415267', '__ci_last_regenerate|i:1520415140;identity|s:15:\"amirat@unpc.com\";username|s:6:\"amirat\";email|s:15:\"amirat@unpc.com\";user_id|s:2:\"13\";old_last_login|s:10:\"1520237700\";last_ip|N;avatar|N;gender|N;group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('17behms81hq5vq70tmo2j625f6mlm1ba', '5.36.122.129', '1520316681', '__ci_last_regenerate|i:1520316563;requested_page|s:0:\"\";error|s:68:\"<p>You have 3 failed login attempts. Please try after 10 minutes</p>\";__ci_vars|a:1:{s:5:\"error\";s:3:\"old\";}');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('49ubf58kt5fbb9b5518uhpsoujr3fn51', '94.185.57.180', '1521295581', '__ci_last_regenerate|i:1521295496;identity|s:19:\"admin@gulfcyber.com\";username|s:4:\"gulf\";email|s:19:\"admin@gulfcyber.com\";user_id|s:1:\"8\";old_last_login|s:10:\"1521293123\";last_ip|s:13:\"94.185.57.180\";avatar|N;gender|N;group_id|s:1:\"1\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('64sj9hs6tpbvnge5qj1847070dpdo224', '94.185.57.180', '1521366702', '__ci_last_regenerate|i:1521366430;requested_page|s:0:\"\";identity|s:19:\"admin@gulfcyber.com\";username|s:4:\"gulf\";email|s:19:\"admin@gulfcyber.com\";user_id|s:1:\"8\";old_last_login|s:10:\"1521356064\";last_ip|s:12:\"5.36.145.203\";avatar|N;gender|N;group_id|s:1:\"1\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('6bm1jfvm640h59lihf77e7fj41n7rr3b', '66.249.93.222', '1521192153', '__ci_last_regenerate|i:1521192153;');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('6v1bam5ujfsmn474r7hhe9p432rvmb0l', '94.185.57.180', '1521294944', '__ci_last_regenerate|i:1521294932;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1521292371\";last_ip|s:13:\"94.185.57.180\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('7k02hc6qktc8kgunp7ddr0m7tlccu71o', '85.154.76.36', '1520239346', '__ci_last_regenerate|i:1520239208;requested_page|s:0:\"\";identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1520225527\";last_ip|s:13:\"82.178.149.99\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('8g4poirv0rpqrunacef6neqno58em9q7', '69.58.178.56', '1520363797', '__ci_last_regenerate|i:1520363796;');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('9sksuiqguq7tfcrpjkf14qhke15jhi9g', '5.37.249.236', '1520921345', '__ci_last_regenerate|i:1520921123;identity|s:19:\"admin@gulfcyber.com\";username|s:4:\"gulf\";email|s:19:\"admin@gulfcyber.com\";user_id|s:1:\"8\";old_last_login|s:10:\"1520237322\";last_ip|s:12:\"5.37.140.106\";avatar|N;gender|N;group_id|s:1:\"1\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('aabrc1cg9mki4h127v0o2o5hhc4rjlbf', '66.249.81.222', '1521192153', '__ci_last_regenerate|i:1521192153;');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('b8kntcc23p2hjrbtn9j8iqpef8rv2u6s', '78.129.250.17', '1520358714', '__ci_last_regenerate|i:1520358714;requested_page|s:0:\"\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('bfmk2hbmeaa527hra1vl1m6ksa0f07sh', '66.249.93.221', '1521136950', '__ci_last_regenerate|i:1521136950;');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('ck7mkvit3fhn2miv0nk661lpij31emg1', '66.249.93.221', '1521313391', '__ci_last_regenerate|i:1521313391;');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('cqq895potjbcil72el9db6cok7df69mc', '5.36.221.230', '1520836785', '__ci_last_regenerate|i:1520836785;requested_page|s:0:\"\";identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1520411143\";last_ip|s:13:\"85.154.21.226\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('dlvd6eeda0d5cg955djsmmapdrac5c2v', '94.185.57.180', '1521294332', '__ci_last_regenerate|i:1521294237;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1521292371\";last_ip|s:13:\"94.185.57.180\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('e8blfhjve78tih7i5akg8ebedi7pvjgo', '5.36.145.203', '1521354266', '__ci_last_regenerate|i:1521353980;requested_page|s:0:\"\";identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1521353107\";last_ip|s:12:\"5.36.145.203\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('e98qvgv9s6bvimha7s5d0516i7ra7d5e', '94.185.57.180', '1521293197', '__ci_last_regenerate|i:1521293119;identity|s:19:\"admin@gulfcyber.com\";username|s:4:\"gulf\";email|s:19:\"admin@gulfcyber.com\";user_id|s:1:\"8\";old_last_login|s:10:\"1521292324\";last_ip|s:13:\"94.185.57.180\";avatar|N;gender|N;group_id|s:1:\"1\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('evpra22r507gaudubf3orbe2vgg09lnn', '82.178.149.99', '1520225527', '__ci_last_regenerate|i:1520225518;identity|s:13:\"seeb@seeb.com\";username|s:4:\"seeb\";email|s:13:\"seeb@seeb.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1520225287\";last_ip|s:13:\"82.178.149.99\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";message|s:46:\"<p>تم تسجيل الدخول بنجاح</p>\";__ci_vars|a:1:{s:7:\"message\";s:3:\"old\";}');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('gdhqmvnomphuasbmdk0geg369n023eep', '5.36.145.203', '1521357089', '__ci_last_regenerate|i:1521357089;');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('gdhvu45pomn1juivd2an7sbabqog532n', '5.36.145.203', '1521353899', '__ci_last_regenerate|i:1521353558;requested_page|s:0:\"\";identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1521353107\";last_ip|s:12:\"5.36.145.203\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('hgo140vnqgus346ere9icpiinl543vgo', '5.37.140.106', '1520237703', '__ci_last_regenerate|i:1520237617;requested_page|s:0:\"\";identity|s:19:\"admin@gulfcyber.com\";username|s:4:\"gulf\";email|s:19:\"admin@gulfcyber.com\";user_id|s:1:\"8\";old_last_login|s:10:\"1520077098\";last_ip|s:13:\"94.185.57.180\";avatar|N;gender|N;group_id|s:1:\"1\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('i1037jp0j3u0mhsgvpdstg4hkndeobrv', '5.37.140.106', '1520237611', '__ci_last_regenerate|i:1520237311;requested_page|s:0:\"\";identity|s:19:\"admin@gulfcyber.com\";username|s:4:\"gulf\";email|s:19:\"admin@gulfcyber.com\";user_id|s:1:\"8\";old_last_login|s:10:\"1520077098\";last_ip|s:13:\"94.185.57.180\";avatar|N;gender|N;group_id|s:1:\"1\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('i5elv8caqt6ir3cucbr18htl0p33st57', '85.154.21.226', '1520411464', '__ci_last_regenerate|i:1520411463;requested_page|s:0:\"\";identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1520410050\";last_ip|s:13:\"94.185.57.180\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('ia7n83h0apfcs3a18g8a20jnjpc12cd0', '5.36.145.203', '1521356334', '__ci_last_regenerate|i:1521356326;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1521354521\";last_ip|s:12:\"5.36.145.203\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";message|s:46:\"<p>تم تسجيل الدخول بنجاح</p>\";__ci_vars|a:1:{s:7:\"message\";s:3:\"old\";}');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('ilotcrrucp2fvle65tahdftvkgpf2h5t', '66.249.93.222', '1520952303', '__ci_last_regenerate|i:1520952303;');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('iqeds5n85sngt1rv2uep5ngvl1ggmk36', '94.185.57.180', '1520321465', '__ci_last_regenerate|i:1520321245;requested_page|s:0:\"\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('j2lnbu74725qkdjniir9a5rtanpkp3av', '5.36.145.203', '1521355066', '__ci_last_regenerate|i:1521354511;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1521353714\";last_ip|s:12:\"5.36.145.203\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('k35k0tn8a7gsi88b1ihj98nqgn3ik0vs', '85.154.203.86', '1520831466', '__ci_last_regenerate|i:1520831219;requested_page|s:0:\"\";identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1520411143\";last_ip|s:13:\"85.154.21.226\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('k4r61ss0j65t9iffpa5h5648ccjg67b5', '85.154.21.226', '1520409180', '__ci_last_regenerate|i:1520409086;requested_page|s:0:\"\";error|s:68:\"<p>You have 3 failed login attempts. Please try after 10 minutes</p>\";__ci_vars|a:1:{s:5:\"error\";s:3:\"old\";}');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('k8083h50adet4t976k3s57dhnh7u5pli', '94.185.57.180', '1521292411', '__ci_last_regenerate|i:1521292365;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1521291927\";last_ip|s:13:\"94.185.57.180\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('kp9vi7p7dn2eqfmf87id9aje69juo529', '82.178.74.140', '1519798834', '__ci_last_regenerate|i:1519798594;requested_page|s:0:\"\";identity|s:13:\"seeb@seeb.com\";username|s:4:\"seeb\";email|s:13:\"seeb@seeb.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1519791446\";last_ip|s:13:\"85.154.81.183\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('lgpvb0fl43pdts4pvb8pq76b7a54pl3j', '66.249.93.221', '1521047009', '__ci_last_regenerate|i:1521047009;');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('m8m0vh5ip3m6ddcn8vbp1363pr2g7b0k', '5.36.145.203', '1521356071', '__ci_last_regenerate|i:1521355771;identity|s:19:\"admin@gulfcyber.com\";username|s:4:\"gulf\";email|s:19:\"admin@gulfcyber.com\";user_id|s:1:\"8\";old_last_login|s:10:\"1521353364\";last_ip|s:12:\"5.36.145.203\";avatar|N;gender|N;group_id|s:1:\"1\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('md1p5c44jluquih9dccm0du1jpojrln9', '82.178.74.140', '1519800717', '__ci_last_regenerate|i:1519800716;identity|s:13:\"seeb@seeb.com\";username|s:4:\"seeb\";email|s:13:\"seeb@seeb.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1519798623\";last_ip|s:13:\"82.178.74.140\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('ms80sfucukc4lroca7t7q8fi4qp88igl', '158.69.116.60', '1520385177', '__ci_last_regenerate|i:1520385177;requested_page|s:0:\"\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('nshstn7dvd336t1c90bkhir2tueuk8sa', '85.154.203.86', '1520830842', '__ci_last_regenerate|i:1520830824;requested_page|s:0:\"\";identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1520411143\";last_ip|s:13:\"85.154.21.226\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('o08g26ipmljn885spg48alql55ajob9o', '94.185.57.180', '1520415140', '__ci_last_regenerate|i:1520415139;identity|s:15:\"amirat@unpc.com\";username|s:6:\"amirat\";email|s:15:\"amirat@unpc.com\";user_id|s:2:\"13\";old_last_login|s:10:\"1520237700\";last_ip|N;avatar|N;gender|N;group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('qpbe7h2k9eleko6ql4aks6ehpblvt7f1', '94.185.57.180', '1520316845', '__ci_last_regenerate|i:1520316844;requested_page|s:0:\"\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('quvr2k4ofegb70kv2jshbe7dvraq4hov', '94.185.57.180', '1520077113', '__ci_last_regenerate|i:1520077086;requested_page|s:0:\"\";identity|s:19:\"admin@gulfcyber.com\";username|s:4:\"gulf\";email|s:19:\"admin@gulfcyber.com\";user_id|s:1:\"8\";old_last_login|s:10:\"1519798956\";last_ip|s:13:\"82.178.74.140\";avatar|N;gender|N;group_id|s:1:\"1\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('r2t4vohl16i2b0tbmul1460cb3co9v7b', '94.185.57.180', '1521366431', '__ci_last_regenerate|i:1521366430;requested_page|s:0:\"\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('r96kbma2jdl2kdd86annsf7r4b5i4a2a', '94.185.57.180', '1521293573', '__ci_last_regenerate|i:1521293514;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1521292371\";last_ip|s:13:\"94.185.57.180\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('rpc678dinets9pehjsrf4hikfrsm062s', '85.154.21.226', '1520411444', '__ci_last_regenerate|i:1520411134;requested_page|s:0:\"\";identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1520410050\";last_ip|s:13:\"94.185.57.180\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('t7j4ebhsgl8sll0clrq8nkqmdgphkkkq', '82.178.149.99', '1520232048', '__ci_last_regenerate|i:1520232047;identity|s:13:\"seeb@seeb.com\";username|s:4:\"seeb\";email|s:13:\"seeb@seeb.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1520225287\";last_ip|s:13:\"82.178.149.99\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('uap927r8qp8k5ll5bhkj24n51emv2t9v', '5.36.145.203', '1521355597', '__ci_last_regenerate|i:1521355110;identity|s:13:\"seeb@unpc.com\";username|s:4:\"seeb\";email|s:13:\"seeb@unpc.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1521353714\";last_ip|s:12:\"5.36.145.203\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('uodgsqq105fhscnpou6ou16v2ja3hlbv', '94.185.57.180', '1520491582', '__ci_last_regenerate|i:1520491582;requested_page|s:0:\"\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('uuv0pkd83vt72ilgou0o6abk237ujhtj', '5.37.128.59', '1520158380', '__ci_last_regenerate|i:1520158379;requested_page|s:0:\"\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('v8l3iqoa7he6r3qs9iqa2reget3q4cqg', '94.185.57.180', '1521291289', '__ci_last_regenerate|i:1521291288;requested_page|s:0:\"\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('vgbnbpa4t8a3bs14bn6jntfagvbob75b', '82.178.74.140', '1519799161', '__ci_last_regenerate|i:1519799092;identity|s:13:\"seeb@seeb.com\";username|s:4:\"seeb\";email|s:13:\"seeb@seeb.com\";user_id|s:1:\"7\";old_last_login|s:10:\"1519798623\";last_ip|s:13:\"82.178.74.140\";avatar|N;gender|s:4:\"male\";group_id|s:1:\"2\";');
+INSERT INTO `tec_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES ('vqm61vitum9p9st1e3lpm9bedh5fbe32', '94.185.57.180', '1520410129', '__ci_last_regenerate|i:1520410122;identity|s:15:\"amirat@unpc.com\";username|s:6:\"amirat\";email|s:15:\"amirat@unpc.com\";user_id|s:2:\"13\";old_last_login|s:10:\"1520237700\";last_ip|N;avatar|N;gender|N;group_id|s:1:\"2\";message|s:38:\"<p>You are successfully logged in.</p>\";__ci_vars|a:1:{s:7:\"message\";s:3:\"old\";}');
+
+
+#
+# TABLE STRUCTURE FOR: tec_settings
+#
+
+DROP TABLE IF EXISTS `tec_settings`;
+
+CREATE TABLE `tec_settings` (
+  `setting_id` int(1) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `site_name` varchar(55) NOT NULL,
+  `rows_per_page` int(2) NOT NULL,
+  `dateformat` varchar(20) DEFAULT NULL,
+  `timeformat` varchar(20) DEFAULT NULL,
+  `language` varchar(20) NOT NULL,
+  `version` varchar(10) NOT NULL DEFAULT '1.0',
+  `theme` varchar(20) NOT NULL,
+  `timezone` varchar(255) NOT NULL DEFAULT '0',
+  `default_email` varchar(100) DEFAULT NULL,
+  `mmode` tinyint(1) NOT NULL,
+  `captcha` tinyint(1) NOT NULL DEFAULT '1',
+  `purchase_code` varchar(100) DEFAULT NULL,
+  `envato_username` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`setting_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_settings` (`setting_id`, `logo`, `site_name`, `rows_per_page`, `dateformat`, `timeformat`, `language`, `version`, `theme`, `timezone`, `default_email`, `mmode`, `captcha`, `purchase_code`, `envato_username`) VALUES ('1', 'logo.png', 'United Number Plate L.L.C', '10', 'jS F Y', 'h:i A', 'english', '2.1', 'default', 'Asia/Kuala_Lumpur', 'admin@gulfcyber.com', '0', '0', NULL, NULL);
+
+
+#
+# TABLE STRUCTURE FOR: tec_stores
+#
+
+DROP TABLE IF EXISTS `tec_stores`;
+
+CREATE TABLE `tec_stores` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `store_name` varchar(50) NOT NULL,
+  `location` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('7', 'Store 1 ', '1');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('8', 'Store 2', '2');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('9', 'Store 3', '3');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('10', 'Store 4', '4');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('11', 'Seeb', 'Seeb');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('12', 'qurum', 'Qurum');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('13', 'khoud', 'khoud');
+INSERT INTO `tec_stores` (`id`, `store_name`, `location`) VALUES ('14', 'amirat', 'amirat');
+
+
+#
+# TABLE STRUCTURE FOR: tec_suppliers
+#
+
+DROP TABLE IF EXISTS `tec_suppliers`;
+
+CREATE TABLE `tec_suppliers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(55) NOT NULL,
+  `cf1` varchar(255) NOT NULL,
+  `cf2` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_suppliers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('1', 'Test Supplier', '', '', '012345678', 'test@supplier.com');
+INSERT INTO `tec_suppliers` (`id`, `name`, `cf1`, `cf2`, `phone`, `email`) VALUES ('2', 'testing', '12', '123', '1122', 'test@gmail.com');
+
+
+#
+# TABLE STRUCTURE FOR: tec_user_logins
+#
+
+DROP TABLE IF EXISTS `tec_user_logins`;
+
+CREATE TABLE `tec_user_logins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  `ip_address` varbinary(16) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('1', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-01 08:55:24');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('2', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-01 15:21:36');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('3', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-02 04:44:36');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('4', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-02 11:09:05');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('5', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-02 14:09:37');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('6', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-03 05:18:18');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('7', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-05 12:20:31');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('8', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-05 12:41:38');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('9', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-05 16:27:05');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('10', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-06 06:14:45');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('11', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-06 08:54:14');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('12', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-06 13:28:01');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('13', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-06 14:59:34');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('14', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-07 06:10:14');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('15', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-07 07:02:49');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('16', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-07 07:21:36');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('17', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-07 13:52:20');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('18', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-07 14:18:54');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('19', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-07 17:07:43');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('20', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-07 17:41:54');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('21', '1', NULL, '::1', 'admin@tecdiary.com', '2018-01-08 05:56:08');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('22', '2', NULL, '::1', 'hamidmuslim@live.com', '2018-01-08 06:18:23');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('23', '2', NULL, '39.42.105.165', 'hamidmuslim@live.com', '2018-01-08 06:36:59');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('24', '1', NULL, '39.42.105.165', 'admin@tecdiary.com', '2018-01-08 06:41:09');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('25', '1', NULL, '39.42.105.165', 'admin@tecdiary.com', '2018-01-08 08:15:17');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('26', '3', NULL, '39.42.105.165', 'revodomains@gmail.com', '2018-01-08 08:17:46');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('27', '1', NULL, '39.42.105.165', 'admin@tecdiary.com', '2018-01-08 08:48:53');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('28', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-08 14:55:22');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('29', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-08 15:12:04');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('30', '1', NULL, '39.42.105.165', 'admin@tecdiary.com', '2018-01-08 15:28:22');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('31', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-08 15:55:59');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('32', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-09 03:06:07');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('33', '1', NULL, '39.42.105.165', 'admin@tecdiary.com', '2018-01-09 08:31:03');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('34', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-11 14:16:51');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('35', '7', NULL, '94.185.25.16', 'seeb@seeb.com', '2018-01-11 14:26:59');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('36', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-11 14:30:29');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('37', '1', NULL, '94.185.25.16', 'admin@tecdiary.com', '2018-01-11 17:48:07');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('38', '7', NULL, '94.185.25.16', 'seeb@seeb.com', '2018-01-11 17:51:06');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('39', '1', NULL, '94.185.29.90', 'admin@tecdiary.com', '2018-01-13 13:28:22');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('40', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-13 16:17:01');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('41', '9', NULL, '94.185.29.90', 'store1@store1.com', '2018-01-13 17:31:18');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('42', '9', NULL, '94.185.29.90', 'store1@store1.com', '2018-01-13 17:35:52');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('43', '10', NULL, '94.185.29.90', 'store2@store2.com', '2018-01-13 18:32:59');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('44', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-14 05:32:18');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('45', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-14 17:02:58');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('46', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-15 08:29:29');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('47', '8', NULL, '5.36.118.43', 'admin@gulfcyber.com', '2018-01-16 05:48:02');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('48', '9', NULL, '5.36.118.43', 'store1@store1.com', '2018-01-16 05:48:49');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('49', '9', NULL, '37.200.156.125', 'store1@store1.com', '2018-01-16 06:33:00');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('50', '8', NULL, '37.200.156.125', 'admin@gulfcyber.com', '2018-01-16 06:48:21');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('51', '8', NULL, '37.200.156.125', 'admin@gulfcyber.com', '2018-01-16 06:51:15');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('52', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-17 05:43:36');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('53', '1', NULL, '39.42.102.223', 'admin@tecdiary.com', '2018-01-18 08:50:47');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('54', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-18 13:50:18');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('55', '9', NULL, '94.185.29.90', 'store1@store1.com', '2018-01-18 14:34:28');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('56', '1', NULL, '39.42.127.251', 'admin@tecdiary.com', '2018-01-20 16:32:34');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('57', '2', NULL, '39.42.127.251', 'hamidmuslim@live.com', '2018-01-20 16:35:08');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('58', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-21 13:45:58');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('59', '9', NULL, '94.185.29.90', 'store1@store1.com', '2018-01-21 13:47:05');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('60', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-24 04:30:26');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('61', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-24 05:20:15');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('62', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-24 06:12:58');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('63', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-24 08:00:04');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('64', '8', NULL, '94.185.29.90', 'admin@gulfcyber.com', '2018-01-24 08:02:15');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('65', '9', NULL, '94.185.29.90', 'store1@store1.com', '2018-01-24 08:32:04');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('66', '9', NULL, '94.185.60.132', 'store1@store1.com', '2018-02-08 04:30:48');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('67', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-02-27 18:39:25');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('68', '7', NULL, '94.185.57.180', 'seeb@seeb.com', '2018-02-27 18:42:35');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('69', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-02-27 18:46:00');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('70', '7', NULL, '85.154.81.183', 'seeb@seeb.com', '2018-02-28 04:17:26');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('71', '7', NULL, '82.178.74.140', 'seeb@seeb.com', '2018-02-28 06:17:03');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('72', '8', NULL, '82.178.74.140', 'admin@gulfcyber.com', '2018-02-28 06:22:36');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('73', '7', NULL, '82.178.74.140', 'seeb@seeb.com', '2018-02-28 06:25:04');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('74', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-03 11:38:18');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('75', '7', NULL, '82.178.149.99', 'seeb@seeb.com', '2018-03-05 04:48:07');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('76', '7', NULL, '82.178.149.99', 'seeb@seeb.com', '2018-03-05 04:52:07');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('77', '8', NULL, '5.37.140.106', 'admin@gulfcyber.com', '2018-03-05 08:08:42');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('78', '7', NULL, '85.154.76.36', 'seeb@unpc.com', '2018-03-05 08:41:05');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('79', '7', NULL, '94.185.57.180', 'seeb@unpc.com', '2018-03-07 08:07:30');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('80', '11', NULL, '94.185.57.180', 'qurum@unpc.com', '2018-03-07 08:08:08');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('81', '12', NULL, '94.185.57.180', 'khoud@unpc.com', '2018-03-07 08:08:31');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('82', '13', NULL, '94.185.57.180', 'amirat@unpc.com', '2018-03-07 08:08:49');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('83', '7', NULL, '85.154.21.226', 'seeb@unpc.com', '2018-03-07 08:25:43');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('84', '7', NULL, '85.154.203.86', 'seeb@unpc.com', '2018-03-12 05:00:28');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('85', '7', NULL, '5.37.249.236', 'seeb@unpc.com', '2018-03-13 06:04:04');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('86', '8', NULL, '5.37.249.236', 'admin@gulfcyber.com', '2018-03-13 06:05:51');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('87', '7', NULL, '94.185.57.180', 'seeb@unpc.com', '2018-03-17 13:01:32');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('88', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-17 13:04:22');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('89', '7', NULL, '94.185.57.180', 'seeb@unpc.com', '2018-03-17 13:05:27');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('90', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-17 13:12:04');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('91', '7', NULL, '94.185.57.180', 'seeb@unpc.com', '2018-03-17 13:12:51');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('92', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-17 13:25:23');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('93', '7', NULL, '94.185.57.180', 'seeb@unpc.com', '2018-03-17 13:32:00');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('94', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-17 14:05:01');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('95', '7', NULL, '5.36.145.203', 'seeb@unpc.com', '2018-03-18 06:05:07');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('96', '8', NULL, '5.36.145.203', 'admin@gulfcyber.com', '2018-03-18 06:09:24');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('97', '7', NULL, '5.36.145.203', 'seeb@unpc.com', '2018-03-18 06:15:14');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('98', '7', NULL, '5.36.145.203', 'seeb@unpc.com', '2018-03-18 06:28:41');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('99', '8', NULL, '5.36.145.203', 'admin@gulfcyber.com', '2018-03-18 06:54:24');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('100', '7', NULL, '5.36.145.203', 'seeb@unpc.com', '2018-03-18 06:58:54');
+INSERT INTO `tec_user_logins` (`id`, `user_id`, `company_id`, `ip_address`, `login`, `time`) VALUES ('101', '8', NULL, '94.185.57.180', 'admin@gulfcyber.com', '2018-03-18 09:47:16');
+
+
+#
+# TABLE STRUCTURE FOR: tec_users
+#
+
+DROP TABLE IF EXISTS `tec_users`;
+
+CREATE TABLE `tec_users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `last_ip_address` varbinary(45) DEFAULT NULL,
+  `ip_address` varbinary(45) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `salt` varchar(40) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `activation_code` varchar(40) DEFAULT NULL,
+  `forgotten_password_code` varchar(40) DEFAULT NULL,
+  `forgotten_password_time` int(11) unsigned DEFAULT NULL,
+  `remember_code` varchar(40) DEFAULT NULL,
+  `created_on` int(11) unsigned NOT NULL,
+  `last_login` int(11) unsigned DEFAULT NULL,
+  `active` tinyint(1) unsigned DEFAULT NULL,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `avatar` varchar(55) DEFAULT NULL,
+  `gender` varchar(20) DEFAULT NULL,
+  `group_id` int(10) unsigned NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `hash` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `group_id` (`group_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('1', '39.42.127.251', '\0\0', 'admin', '2a7c8e0896640da11cef8c5767e56efb359f947e', NULL, 'admin@tecdiary.com', NULL, '6098efc68f769bb79f710ec1c7f4f217f4737794', '1439445583', NULL, '1351661704', '1516465954', '1', 'Admin', 'Admin', 'Simple Stock Manager', '012345678', NULL, 'male', '1', '0', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('2', '39.42.127.251', '::1', 'hamid', '45502865cbb6621c755316e4d675e849b2e2ab82', NULL, 'hamidmuslim@live.com', NULL, NULL, NULL, NULL, '1515170082', '1516466108', '1', 'hamid', 'Maqbool', NULL, '123123', NULL, 'male', '2', '7', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('3', '39.42.105.165', '39.42.105.165', 'sajidkhan', 'd339f74bb5dd38f1f542b44f8ceacf0d08aec3be', NULL, 'revodomains@gmail.com', NULL, NULL, NULL, NULL, '1515399425', '1515399466', '1', 'sajid', 'ali', NULL, '03451154458', NULL, 'male', '2', '3', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('5', NULL, '198.23.196.21', 'jhhkk', '92a5f73fe5024f438a7a4047b002a967d6d864d4', NULL, 'junkpk143@outlook.com', NULL, NULL, NULL, NULL, '1515408355', '1515408355', '1', 'Hamid', 'Maqbool', NULL, '213', NULL, 'male', '2', '4', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('7', '5.36.145.203', '94.185.25.16', 'seeb', 'eb827dd4afce66e066302410c706cbef419cb492', NULL, 'seeb@unpc.com', NULL, NULL, NULL, NULL, '1515680507', '1521356334', '1', 'seeb', 'seeb', NULL, '8887777', NULL, 'male', '2', '11', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('8', '94.185.57.180', '94.185.29.90', 'gulf', '00ba761f1db82117de54d38346314278708a3c46', NULL, 'admin@gulfcyber.com', NULL, NULL, NULL, NULL, '1515850232', '1521366436', '1', 'GULF', 'gulf', NULL, '96781885', NULL, NULL, '1', '0', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('11', '94.185.57.180', '5.37.140.106', 'qurum', 'b7f7c87e6d0da7f952aab93b2d2da4c4edba1a9a', NULL, 'qurum@unpc.com', NULL, NULL, NULL, NULL, '1520237521', '1520410088', '1', 'qurum', '', NULL, '12345784', NULL, NULL, '2', '12', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('12', '94.185.57.180', '5.37.140.106', 'khoud', '16c23a2965610a25eedd2ba9c6e9accff6a082ed', NULL, 'khoud@unpc.com', NULL, NULL, NULL, NULL, '1520237662', '1520410111', '1', 'Khoud', '', NULL, '87548759', NULL, NULL, '2', '13', NULL);
+INSERT INTO `tec_users` (`id`, `last_ip_address`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `avatar`, `gender`, `group_id`, `store_id`, `hash`) VALUES ('13', '94.185.57.180', '5.37.140.106', 'amirat', '5f93f396b27581a5bb7868b9fbdffd429dff256e', NULL, 'amirat@unpc.com', NULL, NULL, NULL, NULL, '1520237700', '1520410129', '1', 'amirat', '', NULL, '74857485', NULL, NULL, '2', '14', NULL);
+
+
