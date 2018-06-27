@@ -58,6 +58,7 @@
 | the query builder class.
 */
 
+
 $active_group = 'default';
 $query_builder = TRUE;
 

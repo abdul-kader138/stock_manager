@@ -143,7 +143,8 @@
                 { "data": "um" }
             ],
             'fnRowCallback': function (nRow, aData) {
-                nRow.id = aData.id; nRow.className = "check_out_link";
+                nRow.id = aData.id;
+                // nRow.className = "check_out_link";
                 return nRow;
             }
         });
