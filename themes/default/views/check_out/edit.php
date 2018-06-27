@@ -60,6 +60,7 @@
                                     <thead>
                                         <tr class="active">
                                             <th><?= lang('description'); ?></th>
+                                            <th class="col-xs-2"><?= lang('serial no'); ?></th>
 											<th class="col-xs-2"><?= lang('plate number'); ?></th>
                                             <th class="col-xs-2"><?= lang('plate code'); ?></th>
                                             <th class="col-xs-2"><?= lang('quantity'); ?></th>

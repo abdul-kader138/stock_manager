@@ -113,24 +113,26 @@ function loadInItems() {
         stoutitems = JSON.parse(get('stoutitems'));
 
         $.each(stoutitems, function () {
-
             var item = this;
             var item_id = item.id;
-			
+
+			var serial_number = item.serial_number;
 			var plate_number = item.plate_number;
 			var plate_code = item.plate_code;
-			
+
             stoutitems[item_id] = item;
 
-	
+
             var product_id = item.row.id, item_qty = item.row.qty, item_aqty = item.row.quantity, item_code = item.row.code,
             item_name = item.row.name.replace(/"/g, "&#034;").replace(/'/g, "&#039;");
 
-	
+
+            console.log(this);
             var row_no = (new Date).getTime();
             var newTr = $('<tr id="' + row_no + '" class="' + item_id + '" data-item-id="' + item_id + '"></tr>');
             tr_html = '<td style="min-width:100px;"><input name="product_id[]" type="hidden" class="rid" value="' + product_id + '"><span class="sname" id="name_' + row_no + '">' + item_name + ' (' + item_code + ')</span></td>';
-            
+
+			tr_html += '<td style="padding:2px;"><input class="form-control input-sm kb-pad text-center rserial_number" name="serial_number[]" type="text" value="' + serial_number + '" data-id="' + row_no + '" data-item="' + item_id + '" id="serial_number_' + row_no + '"  onClick="this.select();"></td>';
 			tr_html += '<td style="padding:2px;"><input class="form-control input-sm kb-pad text-center rplate_number" name="plate_number[]" type="text" value="' + plate_number + '" data-id="' + row_no + '" data-item="' + item_id + '" id="plate_code_' + row_no + '"  onClick="this.select();"></td>';
 
 			tr_html += '<td style="padding:2px;"><input class="form-control input-sm kb-pad text-center rplate_code" name="plate_code[]" type="text" value="' + plate_code + '" data-id="' + row_no + '" data-item="' + item_id + '" id="plate_code_' + row_no + '"   onClick="this.select();"></td>';
@@ -138,6 +140,7 @@ function loadInItems() {
 			tr_html += '<td style="padding:2px;"><input class="form-control input-sm kb-pad text-center rquantity" name="quantity[]" type="text" value="' + item_qty + '" data-id="' + row_no + '" data-item="' + item_id + '" id="quantity_' + row_no + '" onClick="this.select();"></td>';
 
             tr_html += '<td class="text-center"><i class="fa fa-trash-o tip pointer stoutdel" id="' + row_no + '" title="Remove"></i></td>';
+
             newTr.html(tr_html);
             newTr.prependTo("#inTable");
             if(item_aqty < item_qty) {
@@ -150,19 +153,21 @@ function loadInItems() {
 }
 
 function add_order_item(item) {
-
     var item_id = item.id;
 	var plate_number = '';
+	var serial_number = '';
 	var plate_code = '';
 	
 	index = unique_id();
 		
     if (stoutitems[index]) {
         stoutitems[index].row.qty = parseFloat(stoutitems[index].row.qty) + 1;
+        stoutitems[index].row.serial_number = serial_number;
         stoutitems[index].row.plate_number = plate_number;
         stoutitems[index].row.plate_code = plate_code;
     } else {
 		item.id = index;
+		item.serial_number = serial_number;
 		item.plate_number = plate_number;
         item.plate_code = plate_code;
         stoutitems[index] = item;

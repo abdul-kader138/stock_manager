@@ -59,6 +59,7 @@
                                     <thead>
                                         <tr class="active">
                                             <th><?= lang('description'); ?></th>
+                                            <th class="col-xs-2"><?= lang('serial no'); ?></th>
                                             <th class="col-xs-2"><?= lang('plate number'); ?></th>
                                             <th class="col-xs-2"><?= lang('plate code'); ?></th>
                                             <th class="col-xs-2"><?= lang('quantity'); ?></th>
@@ -67,7 +68,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td colspan="6"><?= lang('add_product_by_searching_above_field'); ?></td>
+                                            <td colspan="7"><?= lang('add_product_by_searching_above_field'); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>

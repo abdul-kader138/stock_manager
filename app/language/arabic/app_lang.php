@@ -299,6 +299,7 @@ $lang['created_by']                          = "المستخدم";
 $lang['select_store']                          = "اختيار المستودع";
 $lang['choose_file']                          = "اختيارالملف";
 $lang['plate number']                          = "رقم اللوحة";
+$lang['serial no']                            = "الرقم التسلسلي";
 $lang['plate code']                          = "رمز اللوحة";
 
 //abdul kader(codelover138)

@@ -134,12 +134,12 @@
             "columns": [
                 { "data": "id", "visible": false },
                 { "data": "date", "render": hrld },
-                { "data": "reference","searchable": true},
+                { "data": "serial_number","searchable": true},
                 { "data": "store_name" <?= $Admin ? '' : ', "visible": false'; ?>},
                 { "data": "item_name","searchable": true },
                 { "data": "number","searchable": true },
                 { "data": "item_code","searchable": true },
-                { "data": "qty","searchable": true },
+                { "data": "quantity","searchable": true },
                 { "data": "um" }
             ],
             'fnRowCallback': function (nRow, aData) {
@@ -156,6 +156,7 @@
         $('#search_table').on( 'keyup change', function (e) {
             var code = (e.keyCode ? e.keyCode : e.which);
             if (((code == 13 && table.search() !== this.value) || (table.search() !== '' && this.value === ''))) {
+                console.log(this.value);
                 table.search( this.value ).draw();
             }
         });

@@ -73,6 +73,7 @@ class Check_out extends MY_Controller {
                 $item_id = $_POST['product_id'][$r];
                 $item_qty = $_POST['quantity'][$r];
                 $item_plate_code = $_POST['plate_code'][$r];
+                $serial_number = $_POST['serial_number'][$r];
                 $item_plate_number = $_POST['plate_number'][$r];
                 if( $item_id && $item_qty && $item_plate_code && $item_plate_number) {
 
@@ -86,6 +87,7 @@ class Check_out extends MY_Controller {
                         'quantity' => $item_qty,
                         'plate_code' => $item_plate_code,
                         'plate_number' => $item_plate_number,
+                        'serial_number' => $serial_number,
                         );
 
                 }
@@ -469,7 +471,7 @@ class Check_out extends MY_Controller {
 
         $this->load->library('datatables');
         $this->datatables
-            ->select($this->db->dbprefix('check_out').".id as id, date, reference, ".$this->db->dbprefix('stores').".store_name,".$this->db->dbprefix('items').".name as item_name,".$this->db->dbprefix('check_out_items').".plate_number as number,  ".$this->db->dbprefix('check_out_items').".plate_code as item_code, ".$this->db->dbprefix('check_out_items').".quantity as qty,  ".$this->db->dbprefix('items').".unit as um", FALSE)
+            ->select($this->db->dbprefix('check_out').".id as id, date,". $this->db->dbprefix('check_out_items').".serial_number, ".$this->db->dbprefix('stores').".store_name,".$this->db->dbprefix('items').".name as item_name,".$this->db->dbprefix('check_out_items').".plate_number as number,  ".$this->db->dbprefix('check_out_items').".plate_code as item_code, ".$this->db->dbprefix('check_out_items').".quantity,  ".$this->db->dbprefix('items').".unit as um", FALSE)
             ->from('check_out')
             ->join('check_out_items', 'check_out_items.check_out_id=check_out.id', 'left')
             ->join('items', 'items.id=check_out_items.item_id', 'left')
