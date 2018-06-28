@@ -52,7 +52,7 @@
                         <tr>
                             <th><?=lang('id');?></th>
                             <th class="col-xs-3"><?=lang('date');?></th>
-                            <th class="col-xs-2"><?=lang('reference');?></th>
+                            <th class="col-xs-2"><?=lang('serial no');?></th>
                             <th class="col-xs-3"><?=lang('store');?></th><!-- edit by sajid-->
                             <th class="col-xs-2"><?=lang('name');?></th>
                             <th class="col-xs-1"><?=lang('number');?></th>
@@ -70,7 +70,7 @@
                         <tr>
                             <th><input class="form-control full-width" placeholder="<?=lang('id');?>" type="text"></th>
                             <th class="col-xs-3"><input class="form-control full-width" id="date_range" placeholder="<?=lang('date');?>" type="text"></th>
-                            <th class="col-xs-2"><?=lang('reference');?></th>
+                            <th class="col-xs-2"><?=lang('serial no');?></th>
                             <th class="col-xs-1"><?=lang('store');?></th>
                             <th class="col-xs-2"><?=lang('name');?></th>
                             <th class="col-xs-2"><?=lang('number');?></th>

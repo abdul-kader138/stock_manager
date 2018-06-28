@@ -306,6 +306,7 @@ class Check_out extends MY_Controller {
                 $item_id = $_POST['product_id'][$r];
                 $item_qty = $_POST['quantity'][$r];
 				$item_plate_code = $_POST['plate_code'][$r];
+                $serial_number = $_POST['serial_number'][$r];
                 $item_plate_number = $_POST['plate_number'][$r];
                 if( $item_id && $item_qty && $item_plate_code && $item_plate_number) {
 
@@ -319,6 +320,7 @@ class Check_out extends MY_Controller {
 						'plate_code' => $item_plate_code,
                         'plate_number' => $item_plate_number,
                         'quantity' => $item_qty,
+                        'serial_number' => $serial_number,
                         );
 
                 }
@@ -388,7 +390,7 @@ class Check_out extends MY_Controller {
                     $row = $this->check_out_model->getItemByID($item->item_id);
                     $row->qty = $item->quantity;
 					$index = $row->id.  microtime();
-                    $pr[$index] = array('id' => $index, 'label' => $row->name . " (" . $row->code . ")", 'plate_code' =>$item->plate_code, 'plate_number'=>$item->plate_number, 'row' => $row);
+                    $pr[$index] = array('id' => $index, 'label' => $row->name . " (" . $row->code . ")", 'plate_code' =>$item->plate_code, 'serial_number'=>$item->serial_number, 'plate_number'=>$item->plate_number, 'row' => $row);
                 }
                 $items = json_encode($pr);
             }

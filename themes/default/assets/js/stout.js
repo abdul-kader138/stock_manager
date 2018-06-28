@@ -35,12 +35,6 @@
             }
         });
 
-        // $("#customer").autocomplete({
-        //     source: base_url+'check_out/customers',
-        //     minLength: 1,
-        //     autoFocus: false,
-        //     delay: 200
-        // });
 
         $('#add_item').bind('keypress', function (e) {
             if (e.keyCode == 13) {
@@ -102,6 +96,16 @@
 	        loadInItems();
         });
 
+
+        $(document).on("change", '.rserial_number', function () {
+
+            var row = $(this).closest('tr');
+            var serial_number = $(this).val(),
+                item_id = row.attr('data-item-id');
+            stoutitems[item_id].serial_number = serial_number;
+            store('stoutitems', JSON.stringify(stoutitems));
+            loadInItems();
+        });
     });
 
 function loadInItems() {
@@ -115,7 +119,6 @@ function loadInItems() {
         $.each(stoutitems, function () {
             var item = this;
             var item_id = item.id;
-
 			var serial_number = item.serial_number;
 			var plate_number = item.plate_number;
 			var plate_code = item.plate_code;
@@ -126,8 +129,6 @@ function loadInItems() {
             var product_id = item.row.id, item_qty = item.row.qty, item_aqty = item.row.quantity, item_code = item.row.code,
             item_name = item.row.name.replace(/"/g, "&#034;").replace(/'/g, "&#039;");
 
-
-            console.log(this);
             var row_no = (new Date).getTime();
             var newTr = $('<tr id="' + row_no + '" class="' + item_id + '" data-item-id="' + item_id + '"></tr>');
             tr_html = '<td style="min-width:100px;"><input name="product_id[]" type="hidden" class="rid" value="' + product_id + '"><span class="sname" id="name_' + row_no + '">' + item_name + ' (' + item_code + ')</span></td>';
