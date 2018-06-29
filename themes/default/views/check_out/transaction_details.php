@@ -75,7 +75,8 @@
                             <th class="col-xs-2"><?=lang('name');?></th>
                             <th class="col-xs-2"><?=lang('number');?></th>
                             <th class="col-xs-1"><?=lang('code');?></th>
-                            <th class="col-xs-1"><?=lang('quantity');?></th>
+<!--                            <th class="col-xs-1">--><?//=lang('quantity');?><!--</th>-->
+                            <th class="col-xs-1"><input class="form-control full-width" id="quantity" placeholder="<?=lang('quantity');?>" type="text"></th>
                             <th class="col-xs-1"><?=lang('unit');?></th>
                         </tr>
                         <tr>
