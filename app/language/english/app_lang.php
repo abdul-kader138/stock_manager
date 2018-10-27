@@ -295,5 +295,6 @@ $lang['out_transaction']                      = "Check-Out Item Details";
 $lang['start_date']                           = "Start Date";
 $lang['end_date']                             = "End Date";
 $lang['number']                               = "Number";
+$lang['select_items']                         = "Select Items";
 
 

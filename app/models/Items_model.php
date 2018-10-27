@@ -102,7 +102,7 @@ class Items_model extends CI_Model {
             }
             return $data;
         }
-        return FALSE;;
+        return FALSE;
     }
 
     public function getCheckIns($item_id, $limit = 5) {
@@ -117,7 +117,7 @@ class Items_model extends CI_Model {
             }
             return $data;
         }
-        return FALSE;;
+        return FALSE;
     }
 
     public function getCheckOuts($item_id, $limit = 5) {
@@ -132,7 +132,7 @@ class Items_model extends CI_Model {
             }
             return $data;
         }
-        return FALSE;;
+        return FALSE;
     }
 
 }

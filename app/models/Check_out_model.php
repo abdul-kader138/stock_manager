@@ -179,4 +179,16 @@ class Check_out_model extends CI_Model {
         return FALSE;
     }
 
+    public function getAllItems($id=null) {
+         if($id) $q =  $this->db->get_where('items',array('store_id' => $id));
+         else $q = $this->db->get('items');
+        if ($q->num_rows() > 0) {
+            foreach (($q->result()) as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return FALSE;
+    }
+
 }

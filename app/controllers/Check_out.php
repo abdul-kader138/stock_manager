@@ -452,11 +452,14 @@ class Check_out extends MY_Controller {
     public function transaction_details() {
         $this->data['error'] = validation_errors() ? validation_errors() : $this->session->flashdata('error');
         $this->data['page_title'] = lang('out_transaction');
+        $store_id=null;
+        if(!$this->Admin) $store_id = $this->store_id ;
+        $this->data['items'] = $this->check_out_model->getAllItems($store_id);
         $this->page_construct('check_out/transaction_details', $this->data);
     }
 
 
-    public function get_all_transaction($alerts = NULL) {
+    public function get_all_transaction() {
         if ($_POST["end_date"]) {
             $end_date = $_POST["end_date"];
             $end_date=$end_date ." 23:59:59";
@@ -475,14 +478,19 @@ class Check_out extends MY_Controller {
         $this->datatables
             ->select($this->db->dbprefix('check_out').".id as id, date,". $this->db->dbprefix('check_out_items').".serial_number, ".$this->db->dbprefix('stores').".store_name,".$this->db->dbprefix('items').".name as item_name,".$this->db->dbprefix('check_out_items').".plate_number as number,  ".$this->db->dbprefix('check_out_items').".plate_code as item_code, ".$this->db->dbprefix('check_out_items').".quantity,  ".$this->db->dbprefix('items').".unit as um", FALSE)
             ->from('check_out')
-            ->join('check_out_items', 'check_out_items.check_out_id=check_out.id', 'left')
-            ->join('items', 'items.id=check_out_items.item_id', 'left')
+            ->join('check_out_items', 'check_out_items.check_out_id=check_out.id', 'inner')
+            ->join('items', 'items.id=check_out_items.item_id', 'inner')
             ->join('users', 'users.id=check_out.created_by', 'left')
             ->join('stores', 'stores.id=check_out.store_id', 'left')
             ->group_by('check_out.id,check_out_items.item_id');
         //$this->datatables->unset_column("id");
         if($start_date) { $this->datatables->where('date >=', $start_date); }
         if($end_date) { $this->datatables->where('date <=', $end_date); }
+        if($_POST["qty"]) { $this->datatables->where('check_out_items.quantity', $_POST["qty"]); }
+        if($_POST["items"]) {
+            $item=$_POST["items"];
+            $this->datatables->where('check_out_items.item_id', $item);
+        }
 
         if(!$this->Admin){
             $this->datatables->where('check_out.store_id ', $this->store_id);

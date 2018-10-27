@@ -22,16 +22,36 @@
 
     <?php echo form_open("check_out/transaction_details"); ?>
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="form-group">
                 <?= lang("start_date", "start_date"); ?>
                 <?php echo form_input('start_date', (isset($_POST['start_date']) ? $_POST['start_date'] : ""), 'class="form-control date" required ="required" id="start_date"'); ?>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="form-group">
                 <?= lang("end_date", "end_date"); ?>
                 <?php echo form_input('end_date', (isset($_POST['end_date']) ? $_POST['end_date'] : ""), 'class="form-control date" required ="required" id="end_date"'); ?>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-sm-6"  >
+        <div class="form-group">
+            <?= lang('items', 'items'); ?>
+            <br/>
+            <?php
+            $st[''] = lang('select_items');
+            foreach ($items as $item) {
+                $st[$item->id] = $item->name;
+            } ?>
+            <?= form_dropdown('items', $st, (isset($_POST['items']) ? $_POST['items'] : ''), 'class="form-control" style="width: 100%" id="items" '); ?>
+        </div>
+    </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <?= lang("quantity", "quantity"); ?>
+                <?php echo form_input('qty', (isset($_POST['qty']) ? $_POST['qty'] : ""), 'class="form-control" id="qty"'); ?>
             </div>
         </div>
     </div>
@@ -117,6 +137,9 @@
                     d.<?=$this->security->get_csrf_token_name();?> = "<?=$this->security->get_csrf_hash()?>";
                     d.start_date=$("#start_date").val();
                     d.end_date=$("#end_date").val();
+                    d.store=$("#store").val();
+                    d.items=$("#items").val();
+                    d.qty=$("#qty").val();
                 }},
             rowId: 'id',
             <?php $cols =  $Admin? ' 1, 2, 3, 4, 5,6,7,8': ' 1, 2, 4, 5,6,7,8'; ?>
