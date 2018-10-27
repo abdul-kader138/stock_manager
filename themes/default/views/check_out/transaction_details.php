@@ -43,7 +43,7 @@
             <?php
             $st[''] = lang('select_items');
             foreach ($items as $item) {
-                $st[$item->id] = $item->name;
+                $st[$item->id] = $item->name." ( ". $item->store_name ." )";
             } ?>
             <?= form_dropdown('items', $st, (isset($_POST['items']) ? $_POST['items'] : ''), 'class="form-control" style="width: 100%" id="items" '); ?>
         </div>

@@ -180,6 +180,8 @@ class Check_out_model extends CI_Model {
     }
 
     public function getAllItems($id=null) {
+        $this->db->select('stores.*, items.*')
+            ->join('stores', 'items.store_id=stores.id');
          if($id) $q =  $this->db->get_where('items',array('store_id' => $id));
          else $q = $this->db->get('items');
         if ($q->num_rows() > 0) {
