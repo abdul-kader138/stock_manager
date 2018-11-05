@@ -479,10 +479,10 @@ class Check_out extends MY_Controller {
             ->select($this->db->dbprefix('check_out').".id as id, date,". $this->db->dbprefix('check_out_items').".serial_number, ".$this->db->dbprefix('stores').".store_name,".$this->db->dbprefix('items').".name as item_name,".$this->db->dbprefix('check_out_items').".plate_number as number,  ".$this->db->dbprefix('check_out_items').".plate_code as item_code, ".$this->db->dbprefix('check_out_items').".quantity,  ".$this->db->dbprefix('items').".unit as um", FALSE)
             ->from('check_out')
             ->join('check_out_items', 'check_out_items.check_out_id=check_out.id', 'inner')
-            ->join('items', 'items.id=check_out_items.item_id', 'inner')
+            ->join('items', 'items.id=check_out_items.item_id', 'left')
             ->join('users', 'users.id=check_out.created_by', 'left')
             ->join('stores', 'stores.id=check_out.store_id', 'left')
-            ->group_by('check_out.id,check_out_items.item_id');
+            ->group_by('check_out_items.item_id,check_out.id,stores.id,check_out_items.plate_number');
         //$this->datatables->unset_column("id");
         if($start_date) { $this->datatables->where('date >=', $start_date); }
         if($end_date) { $this->datatables->where('date <=', $end_date); }
